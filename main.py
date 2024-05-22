@@ -8,7 +8,7 @@ from kivymd.uix.label import MDLabel
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.button import MDButton, MDButtonText
 
-
+from gemini import *
 
 class MainApp(MDApp):
     def build(self):
@@ -33,7 +33,7 @@ class MainApp(MDApp):
                             MDButtonText(
                                 text="Set theme",
                             ),
-                            on_release=self.switch_theme_style,
+                            on_release=testPrint,
                             pos_hint={"center_x": 0.5},
                         ),
                         id="card",
