@@ -33,7 +33,7 @@ class MainApp(MDApp):
                             MDButtonText(
                                 text="Set theme",
                             ),
-                            on_release=testPrint,
+                            on_release=BeginStory,
                             pos_hint={"center_x": 0.5},
                         ),
                         id="card",
