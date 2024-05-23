@@ -4,14 +4,15 @@ from gtts import gTTS
 
 genre = "Road Trip"
 language = "Spanish"
+difficulty = 1
 defaultLanguage = "English"
 
 prompt = ""
 gemini_response = ""
 
-def generateStory(genre,language,diff): #Generates the story given the corresponding topic, language and difficulty
+def generateStory(): #Generates the story given the corresponding topic, language and difficulty
 
-    Difficulty(genre,language,diff) #Generates the prompt depending on genre, language, and difficulty
+    Difficulty(genre,language,difficulty) #Generates the prompt depending on genre, language, and difficulty
 
     genai.configure(api_key=os.getenv('GEMINI_API_KEY')) #Configures Gemini API with API Key from environmnet variable
 
@@ -37,7 +38,7 @@ def BeginStory(*args):
 
     #Start loading screen here
 
-    generateStory(genre,language,1) #Generates story with the genre and language and eventually difficulty 
+    generateStory() #Generates story with the genre and language and eventually difficulty 
 
 def Difficulty(genre,language,diff):
     if diff == 1:
