@@ -2,9 +2,9 @@ import os
 import google.generativeai as genai
 from gtts import gTTS
 
-genre = "Road Trip"
-language = "Spanish"
-difficulty = 1
+PromptGenre = "Road Trip"
+PromptLanguage = "Spanish"
+PromptDifficulty = 1
 defaultLanguage = "English"
 
 prompt = ""
@@ -12,7 +12,7 @@ gemini_response = ""
 
 def generateStory(): #Generates the story given the corresponding topic, language and difficulty
 
-    Difficulty(genre,language,difficulty) #Generates the prompt depending on genre, language, and difficulty
+    prompt = Difficulty(PromptGenre,PromptLanguage,PromptDifficulty) #Generates the prompt depending on genre, language, and difficulty
 
     genai.configure(api_key=os.getenv('GEMINI_API_KEY')) #Configures Gemini API with API Key from environmnet variable
 
@@ -23,7 +23,7 @@ def generateStory(): #Generates the story given the corresponding topic, languag
     gemini_response = chat.send_message(prompt).text #Sends prompt to Gemini
     print(gemini_response)
 
-    language = LanguageCode(language) #Converts language into corresponding language code for use with text-to-speech
+    language = LanguageCode(PromptLanguage) #Converts language into corresponding language code for use with text-to-speech
 
     gemini_response.replace("#","") #Gets rid of # when provided in gemini response as Title
 
@@ -42,11 +42,11 @@ def BeginStory(*args):
 
 def Difficulty(genre,language,diff):
     if diff == 1:
-        prompt = "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + defaultLanguage
+        return "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + defaultLanguage
     elif diff == 2:
-        prompt = "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + language
+        return "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + language
     elif diff == 3:
-        prompt = "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + language
+        return "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + language
 
 def LanguageCode(lang):
     if lang == "Spanish":
