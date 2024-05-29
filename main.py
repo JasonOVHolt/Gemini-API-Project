@@ -31,21 +31,29 @@ class MainApp(MDApp):
                         ),
                         MDButton(
                             MDButtonText(
-                                text="Set theme",
+                                text="Generate Story",
                             ),
                             on_release=BeginStory,
                             pos_hint={"center_x": 0.5},
                         ),
-                        id="card",
-                        orientation="vertical",
-                        padding=(0,0,0, "36dp"),
-                        size_hint=(0.5, 0.5),
-                        pos_hint={"center_x": 0.5, "center_y": 0.5},
-                        style="elevated"
-                        
-                    )
-                )
+                        MDButton(
+                            MDButtonText(
+                                text="Change Language",
+                            ),
+                            on_release=changelanguage,
+                            pos_hint={"center_y": 1.0, "center_x": 0.5},
+                        ),                      
+                
+                    id="card",
+                    orientation="vertical",
+                    padding=(0,0,0, "36dp"),
+                    size_hint=(0.5, 0.5),
+                    pos_hint={"center_x": 0.5, "center_y": 0.5},
+                    style="elevated"
+                )        
             )
+        )
+         
         
     def on_start(self):
         def on_start(*args):
@@ -63,6 +71,5 @@ class MainApp(MDApp):
         self.root.get_ids().label.text = (
             "Theme style - {}".format(self.theme_cls.theme_style)
         )
-
-
+ 
 MainApp().run()

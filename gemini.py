@@ -2,6 +2,7 @@ import os
 import google.generativeai as genai
 from gtts import gTTS
 
+
 PromptGenre = "Road Trip"
 PromptLanguage = "Spanish"
 PromptDifficulty = 1
@@ -63,3 +64,23 @@ def LanguageCode(lang):
         x = "ja"
     
     return x
+
+   
+def changelanguage(*args):
+    global PromptLanguage
+   
+    if PromptLanguage == "Spanish":
+        PromptLanguage = "English"
+    elif PromptLanguage == "English":
+        PromptLanguage = "French"
+    elif PromptLanguage == "French":
+        PromptLanguage = "German"
+    elif PromptLanguage == "German":
+        PromptLanguage = "Portuguese"
+    elif PromptLanguage == "Portuguese":
+        PromptLanguage = "Japanese"
+    elif PromptLanguage == "Japanese":
+        PromptLanguage = "Spanish"
+    print(PromptLanguage)
+
+
