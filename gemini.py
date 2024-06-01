@@ -84,6 +84,7 @@ def changelanguage(*args):
     print("Current Language: " + PromptLanguage)
 
 def changeDifficulty(*args):
+    print(args[0])
     global PromptDifficulty
     if(PromptDifficulty == 1):
         PromptDifficulty = 2

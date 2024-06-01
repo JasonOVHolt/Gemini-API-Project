@@ -10,6 +10,8 @@ from kivymd.uix.button import MDButton, MDButtonText
 
 from gemini import *
 
+from functools import partial
+
 class MainApp(MDApp):
     def build(self):
         self.theme_cls.theme_style_switch_animation = True
@@ -46,7 +48,7 @@ class MainApp(MDApp):
                             MDButtonText(
                                 text="Change Difficulty",
                             ),
-                            on_release=changeDifficulty,
+                            on_release=partial(changeDifficulty, 'btn1'),
                             pos_hint={"center_x": 0.5},
                         ),                     
                 
