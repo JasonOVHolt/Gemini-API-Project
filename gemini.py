@@ -28,7 +28,7 @@ def generateStory(): #Generates the story given the corresponding topic, languag
 
     gemini_response.replace("#","") #Gets rid of # when provided in gemini response as Title
 
-    myobj = gTTS(text=gemini_response, lang=language, slow=False) #Creates text-to-speech with prompt and language code
+    myobj = gTTS(text=gemini_response, lang=language, slow=False, lang_check= False) #Creates text-to-speech with prompt and language code
     myobj.save("prompt.mp3") #Saves text-to-speech file
 
     ###End loading screen here
@@ -81,6 +81,18 @@ def changelanguage(*args):
         PromptLanguage = "Japanese"
     elif PromptLanguage == "Japanese":
         PromptLanguage = "Spanish"
-    print(PromptLanguage)
+    print("Current Language: " + PromptLanguage)
 
+def changeDifficulty(*args):
+    global PromptDifficulty
+    if(PromptDifficulty == 1):
+        PromptDifficulty = 2
+        print("Current Difficulty: Medium")
+    elif(PromptDifficulty == 2):
+        PromptDifficulty = 3
+        print("Current Difficulty: Hard")
+    elif(PromptDifficulty == 3):
+        PromptDifficulty = 1
+        print("Current Difficulty: Easy")
+    
 

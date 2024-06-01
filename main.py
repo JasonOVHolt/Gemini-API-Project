@@ -42,7 +42,13 @@ class MainApp(MDApp):
                             ),
                             on_release=changelanguage,
                             pos_hint={"center_y": 1.0, "center_x": 0.5},
-                        ),                      
+                        ), MDButton(
+                            MDButtonText(
+                                text="Change Difficulty",
+                            ),
+                            on_release=changeDifficulty,
+                            pos_hint={"center_x": 0.5},
+                        ),                     
                 
                     id="card",
                     orientation="vertical",
