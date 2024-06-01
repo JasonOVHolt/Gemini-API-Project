@@ -1,30 +1,57 @@
-from kivymd.app import MDApp
-from kivymd.uix.screen import MDScreen
-from kivymd.uix.screenmanager import MDScreenManager
+from kivy.app import App
+from kivy.lang import Builder
+from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.graphics import *
 
-# Create both screens. Please note the root.manager.current: this is how
-# you can control the ScreenManager from kv. Each screen has by default a
-# property manager that gives you the instance of the ScreenManager used.
+Builder.load_string("""
+<MainScreen>:                
+    BoxLayout:
+        canvas.before:
+            Color:
+                rgba: 0, 1, 0, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Button:
+            canvas.after:
+                Color:
+                    rgba: 1, 0, 0, .1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            text: 'GoTo Settings'
+            on_press: 
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'settings'
+                
+        Button:
+            text: 'Quit'
 
-# Declare both screens
-class MenuScreen(MDScreen):
+<SettingsScreen>:
+    BoxLayout:
+        Button:
+            text: 'Settings Button'
+        Button:
+            text: 'Back to menu'
+            on_press: 
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'main'
+                
+""")                    
 
-        MDScreen(
-        
-            )
-             
 
-class SettingsScreen(MDScreen):
+
+class MainScreen(Screen):
     pass
-
-class TestApp(MDApp):
-
+class SettingsScreen(Screen):
+    pass
+class TestApp(App):
     def build(self):
-        # Create the screen manager
-        sm = MDScreenManager()
-        sm.add_widget(MenuScreen(name='Home'))
-        sm.add_widget(SettingsScreen(name='settings'))
-
+        sm = ScreenManager()
+        sm.add_widget(MainScreen(name='main'))
+        sm.add_widget(SettingsScreen(name='settings'))    
         return sm
 
+if __name__ == '__main__':
+    TestApp().run()
 
