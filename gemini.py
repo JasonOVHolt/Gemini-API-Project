@@ -37,6 +37,7 @@ def generateStory(g,l,d): #Generates the story given the corresponding topic, la
     myobj = gTTS(text=gemini_response, lang=language, slow=False, lang_check= False) #Creates text-to-speech with prompt and language code
     myobj.save("prompt.mp3") #Saves text-to-speech file
 
+    return gemini_response
     ###End loading screen here
 
 

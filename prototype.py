@@ -37,16 +37,18 @@ class DifficultyScreen(Screen):
         global PromptDifficulty
         PromptDifficulty = args[1]
         print("Genre: " + PromptGenre + ", Language: " + PromptLanguage + ", Difficulty: " + str(PromptDifficulty))
-        generateStory(PromptGenre,PromptLanguage,PromptDifficulty)
-        PromptScreen.UpdateText()
+        PromptScreen.UpdateText(generateStory(PromptGenre,PromptLanguage,PromptDifficulty))
         sm.current = 'PromptScreen'
     pass
-class PromptScreen(Screen):
-    response = StringProperty()
 
-    def UpdateText():
-        global gemini_response
-        response = gemini_response
+
+
+class PromptScreen(Screen):
+    response = StringProperty("L")
+
+    def UpdateText(gemini):
+        print(gemini)
+        response = gemini
     pass
 
 
