@@ -11,10 +11,16 @@ defaultLanguage = "English"
 prompt = ""
 gemini_response = ""
 
-def generateStory(): #Generates the story given the corresponding topic, language and difficulty
-
+def generateStory(g,l,d): #Generates the story given the corresponding topic, language and difficulty
+    PromptGenre = g
+    PromptLanguage = l
+    PromptDifficulty = d
+    print("Genre: " + PromptGenre + ", Language: " + PromptLanguage + ", Difficulty: " + str(PromptDifficulty))
     prompt = Difficulty(PromptGenre,PromptLanguage,PromptDifficulty) #Generates the prompt depending on genre, language, and difficulty
 
+
+
+    
     genai.configure(api_key=os.getenv('GEMINI_API_KEY')) #Configures Gemini API with API Key from environmnet variable
 
     model = genai.GenerativeModel('gemini-1.5-pro-latest') #Selects Gemini Model
@@ -39,7 +45,7 @@ def BeginStory(*args):
 
     #Start loading screen here
 
-    generateStory() #Generates story with the genre and language and eventually difficulty 
+    generateStory(PromptGenre,PromptLanguage,PromptDifficulty) #Generates story with the genre and language and eventually difficulty 
 
 def Difficulty(genre,language,diff):
     if diff == 1:
