@@ -1,9 +1,13 @@
 <HomeScreen>:
-    MDLabel:
-        text: 'Home Screen'
+    Image:
+        source: 'GLSA.png'
         halign: 'center'
-        pos_hint: {'center_x': 0.5, 'center_y': 0.9}
-        text_color: 'purple'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.87}
+    
+    MDDivider: #Horizontal Divider
+        size_hint_x: 1
+        pos_hint: {'center_x': .5, 'center_y': .74}
+        color: '#1b1b1b'
 
     MDButton:
         pos_hint: {'center_x': 0.5, 'center_y': 0.5}
@@ -14,16 +18,26 @@
 
         MDButtonText:
             text: 'Go to next screen'
-        
-<GenreScreen>:
+
     MDLabel:
-        text: 'Genre Screen'
+        text: 'Home Screen'
         halign: 'center'
-        pos_hint: {'center_x': 0.5, 'center_y': 0.9}
-        text_color: 'purple'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.08}
+        text_color: 'grey'
         
+<GenreScreen>:        
+    Image:
+        source: 'GLSA.png'
+        halign: 'center'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.87}
+
+    MDDivider: #Horizontal Divider
+        size_hint_x: 1
+        pos_hint: {'center_x': .5, 'center_y': .74}
+        color: '#1b1b1b'
+
     MDButton:
-        pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
         on_release: root.Next("a Space adventure")
 
         MDButtonIcon:
@@ -33,7 +47,7 @@
             text: 'Space Adventure'
     
     MDButton:
-        pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+        pos_hint: {'center_x': 0.5, 'center_y': 0.4}
         on_release: root.Next("a Road Trip")
 
         MDButtonIcon:
@@ -43,7 +57,7 @@
             text: 'Road Trip'
     
     MDButton:
-        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        pos_hint: {'center_x': 0.5, 'center_y': 0.3}
         on_release: root.Next("a video game")
 
         MDButtonIcon:
@@ -52,12 +66,22 @@
         MDButtonText:
             text: 'Video Game'
 
-<LanguageScreen>:
     MDLabel:
-        text: 'Language Screen'
+        text: 'Genre Screen'
         halign: 'center'
-        pos_hint: {'center_x': 0.5, 'center_y': 0.9}
-        text_color: 'purple'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.08}
+        text_color: 'grey'
+
+<LanguageScreen>:
+    Image:
+        source: 'GLSA.png'
+        halign: 'center'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.87}
+
+    MDDivider: #Horizontal Divider
+        size_hint_x: 1
+        pos_hint: {'center_x': .5, 'center_y': .74}
+        color: '#1b1b1b'
         
     MDButton:
         pos_hint: {'center_x': 0.5, 'center_y': 0.7}
@@ -109,13 +133,22 @@
         MDButtonText:
             text: 'Japanese'
 
+    MDLabel:
+        text: 'Language Screen'
+        halign: 'center'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.08}
+        text_color: 'grey'
 
 <DifficultyScreen>:
-    MDLabel:
-        text: 'Difficulty Screen'
+    Image:
+        source: 'GLSA.png'
         halign: 'center'
-        pos_hint: {'center_x': 0.5, 'center_y': 0.9}
-        text_color: 'purple'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.87}
+
+    MDDivider: #Horizontal Divider
+        size_hint_x: 1
+        pos_hint: {'center_x': .5, 'center_y': .74}
+        color: '#1b1b1b'
             
     MDButton:
         pos_hint: {'center_x': 0.5, 'center_y': 0.6}
@@ -146,6 +179,12 @@
 
         MDButtonText:
             text: 'Hard'
+
+    MDLabel:
+        text: 'Difficulty Screen'
+        halign: 'center'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.08}
+        text_color: 'grey'
 
 
 <PromptScreen>:

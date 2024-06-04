@@ -2,6 +2,7 @@ from kivymd.app import MDApp
 from kivymd.uix.button import MDButton, MDButtonText
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.core.window import Window
 from kivy.properties import StringProperty
 
 from gemini import *
@@ -10,6 +11,10 @@ from functools import partial
 
 sm = ScreenManager()
 
+#Horizontal and Vertical Aspect ratio default to 16:9
+h_ratio = 450
+v_ratio = 800
+Window.size = (h_ratio, v_ratio)
 
 class HomeScreen(Screen):
     def Next(*args):
