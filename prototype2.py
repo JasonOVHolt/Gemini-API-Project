@@ -5,6 +5,7 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
 from kivy.properties import StringProperty, ObjectProperty
+from kivymd.uix.scrollview import MDScrollView
 
 from gemini import *
 
@@ -24,14 +25,19 @@ class Manager(ScreenManager):
         global sm
         sm = args[0]
         sm.current = 'GenreScreen'
-        print(args)
 
 
     def Genre(*args):
         global sm
         global PromptGenre
+        sm.current = args[1] + 'TopicScreen'
+
+    def Topic(*args):
+        global sm
+        global PromptGenre
         PromptGenre = args[1]
         sm.current = 'LanguageScreen'
+
 
     def Language(*args):
         global sm

@@ -1,5 +1,5 @@
 Manager:
-    Screen:
+    MDScreen:   #HOME
         id:HomeScreen
         name:'HomeScreen'
 
@@ -29,7 +29,7 @@ Manager:
             pos_hint: {'center_x': 0.5, 'center_y': 0.08}
             text_color: 'grey'
     
-    Screen:
+    MDScreen:   #GENRE
         id:GenreScreen
         name:'GenreScreen'
 
@@ -45,13 +45,63 @@ Manager:
 
         MDButton:
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-            on_release: root.Genre("a Space adventure")
+            on_release: root.Genre("EL")
 
             MDButtonIcon:
-                icon: 'alien'
+                icon: 'plus'
 
             MDButtonText:
-                text: 'Space Adventure'
+                text: 'Everyday Life'
+        
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+            on_release: root.Genre("SF")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Science Fiction'
+        
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+            on_release: root.Genre("HS")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'History'
+
+        MDLabel:
+            text: 'Genre Screen'
+            halign: 'center'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.08}
+            text_color: 'grey'
+
+    MDScreen:   #EVERYDAY LIFE TOPIC
+        id:ELTopicScreen
+        name:'ELTopicScreen'
+
+        Image:
+            source: 'GLSA.png'
+            halign: 'center'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.87}
+
+        MDDivider: #Horizontal Divider
+            size_hint_x: 1
+            pos_hint: {'center_x': .5, 'center_y': .74}
+            color: '#1b1b1b'
+
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            on_release: root.Genre("going on a trip to the mall")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Trip to the mall'
         
         MDButton:
             pos_hint: {'center_x': 0.5, 'center_y': 0.4}
@@ -65,21 +115,121 @@ Manager:
         
         MDButton:
             pos_hint: {'center_x': 0.5, 'center_y': 0.3}
-            on_release: root.Genre("a video game")
+            on_release: root.Genre("getting a haircut")
 
             MDButtonIcon:
                 icon: 'plus'
 
             MDButtonText:
-                text: 'Video Game'
+                text: 'Trip to get a Haircut'
 
         MDLabel:
-            text: 'Genre Screen'
+            text: 'Everyday Life Stories'
             halign: 'center'
             pos_hint: {'center_x': 0.5, 'center_y': 0.08}
             text_color: 'grey'
 
-    Screen:
+    MDScreen:   #SCIENCE FICTION TOPIC
+        id:SFTopicScreen
+        name:'SFTopicScreen'
+
+        Image:
+            source: 'GLSA.png'
+            halign: 'center'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.87}
+
+        MDDivider: #Horizontal Divider
+            size_hint_x: 1
+            pos_hint: {'center_x': .5, 'center_y': .74}
+            color: '#1b1b1b'
+
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            on_release: root.Genre("a space adventure")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Space Journey'
+        
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+            on_release: root.Genre("time travel")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Time Travel'
+        
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+            on_release: root.Genre("a robot uprising")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Robot Takeover'
+
+        MDLabel:
+            text: 'Science Fiction Stories'
+            halign: 'center'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.08}
+            text_color: 'grey'
+
+    MDScreen:   #HISTORY TOPIC
+        id:HSTopicScreen
+        name:'HSTopicScreen'
+
+        Image:
+            source: 'GLSA.png'
+            halign: 'center'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.87}
+
+        MDDivider: #Horizontal Divider
+            size_hint_x: 1
+            pos_hint: {'center_x': .5, 'center_y': .74}
+            color: '#1b1b1b'
+
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            on_release: root.Genre("a western adventure")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Western'
+        
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+            on_release: root.Genre("an industrial revolution adventure")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Industrial Revolution'
+        
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+            on_release: root.Genre("an egyptian adventure")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Ancient Egypt'
+
+        MDLabel:
+            text: 'Historical Stories'
+            halign: 'center'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.08}
+            text_color: 'grey'
+
+    MDScreen:   #LANGUGAE
         id:LanguageScreen
         name:'LanguageScreen'
 
@@ -92,56 +242,68 @@ Manager:
             size_hint_x: 1
             pos_hint: {'center_x': .5, 'center_y': .74}
             color: '#1b1b1b'
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+            pos_hint: {'center_x': .5, 'center_y': .1}
             
-        MDButton:
-            pos_hint: {'center_x': 0.5, 'center_y': 0.7}
-            on_release: root.Language("French")
+            MDBoxLayout:
+                id: main_scroll
+                orientation: "vertical"
+                spacing: 20
+                adaptive_height: True
+                pos_hint: {'center_x': .5, 'center_y': .5}
 
-            MDButtonIcon:
-                icon: 'plus'
+                MDButton:
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+                    on_release: root.Language("French")
 
-            MDButtonText:
-                text: 'French'
+                    MDButtonIcon:
+                        icon: 'plus'
 
-        MDButton:
-            pos_hint: {'center_x': 0.5, 'center_y': 0.6}
-            on_release: root.Language("Spanish")
+                    MDButtonText:
+                        text: 'French'
 
-            MDButtonIcon:
-                icon: 'plus'
+                MDButton:
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+                    on_release: root.Language("Spanish")
 
-            MDButtonText:
-                text: 'Spanish'
+                    MDButtonIcon:
+                        icon: 'plus'
 
-        MDButton:
-            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-            on_release: root.Language("German")
+                    MDButtonText:
+                        text: 'Spanish'
 
-            MDButtonIcon:
-                icon: 'plus'
+                MDButton:
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                    on_release: root.Language("German")
 
-            MDButtonText:
-                text: 'German'
+                    MDButtonIcon:
+                        icon: 'plus'
 
-        MDButton:
-            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
-            on_release: root.Language("Portuguese")
+                    MDButtonText:
+                        text: 'German'
 
-            MDButtonIcon:
-                icon: 'plus'
+                MDButton:
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+                    on_release: root.Language("Portuguese")
 
-            MDButtonText:
-                text: 'Portuguese'
+                    MDButtonIcon:
+                        icon: 'plus'
 
-        MDButton:
-            pos_hint: {'center_x': 0.5, 'center_y': 0.3}
-            on_release: root.Language("Japanese")
+                    MDButtonText:
+                        text: 'Portuguese'
 
-            MDButtonIcon:
-                icon: 'plus'
+                MDButton:
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+                    on_release: root.Language("Japanese")
 
-            MDButtonText:
-                text: 'Japanese'
+                    MDButtonIcon:
+                        icon: 'plus'
+
+                    MDButtonText:
+                        text: 'Japanese'
 
         MDLabel:
             text: 'Language Screen'
@@ -149,7 +311,7 @@ Manager:
             pos_hint: {'center_x': 0.5, 'center_y': 0.08}
             text_color: 'grey'
     
-    Screen:
+    MDScreen:   #DIFFICULTY
         id:DifficultyScreen
         name:'DifficultyScreen'
 
@@ -199,7 +361,7 @@ Manager:
             pos_hint: {'center_x': 0.5, 'center_y': 0.08}
             text_color: 'grey'
 
-    Screen:
+    MDScreen:   #PROMPT
         id:PromptScreen
         name:'PromptScreen'
         MDLabel:
