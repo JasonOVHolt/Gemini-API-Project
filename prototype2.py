@@ -4,7 +4,7 @@ from kivymd.uix.label import MDLabel
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
-from kivy.properties import StringProperty
+from kivy.properties import StringProperty, ObjectProperty
 
 from gemini import *
 
@@ -15,23 +15,43 @@ h_ratio = 450
 v_ratio = 800
 Window.size = (h_ratio, v_ratio)
 
+sm = ObjectProperty()
 
 class Manager(ScreenManager):
+    response = ""
+
+    def Next(*args):
+        global sm
+        sm = args[0]
+        sm.current = 'GenreScreen'
+        print(args)
+
 
     def Genre(*args):
         global sm
-        sm.current = 'GenreScreen'
+        global PromptGenre
+        PromptGenre = args[1]
+        sm.current = 'LanguageScreen'
 
     def Language(*args):
         global sm
-        sm.current = 'GenreScreen'
+        global PromptLanguage
+        PromptLanguage = args[1]
+        sm.current = 'DifficultyScreen'
 
     def Difficulty(*args):
         global sm
-        sm.current = 'GenreScreen'
+        global PromptDifficulty
+        PromptDifficulty = args[1]
+        print("Genre: " + PromptGenre + ", Language: " + PromptLanguage + ", Difficulty: " + str(PromptDifficulty))
+        global response
+        response = generateStory(PromptGenre,PromptLanguage,PromptDifficulty)
+        args[0].ids.prompt_output.text = response
+        sm.current = 'PromptScreen'
+
+    
     pass
 
-    sm = ScreenManager()
 
 class PrototypeApp(MDApp):
     
@@ -42,7 +62,6 @@ class PrototypeApp(MDApp):
         self.theme_cls.primary_palette = "Purple"
 
         kv = Builder.load_file("prototype2.kv")
-        
 
         return kv
     

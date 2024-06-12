@@ -1,6 +1,7 @@
 Manager:
     Screen:
         id:HomeScreen
+        name:'HomeScreen'
 
         Image:
             source: 'GLSA.png'
@@ -30,6 +31,7 @@ Manager:
     
     Screen:
         id:GenreScreen
+        name:'GenreScreen'
 
         Image:
             source: 'GLSA.png'
@@ -43,7 +45,7 @@ Manager:
 
         MDButton:
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-            on_release: root.Next("a Space adventure")
+            on_release: root.Genre("a Space adventure")
 
             MDButtonIcon:
                 icon: 'alien'
@@ -53,7 +55,7 @@ Manager:
         
         MDButton:
             pos_hint: {'center_x': 0.5, 'center_y': 0.4}
-            on_release: root.Next("a Road Trip")
+            on_release: root.Genre("a Road Trip")
 
             MDButtonIcon:
                 icon: 'plus'
@@ -63,7 +65,7 @@ Manager:
         
         MDButton:
             pos_hint: {'center_x': 0.5, 'center_y': 0.3}
-            on_release: root.Next("a video game")
+            on_release: root.Genre("a video game")
 
             MDButtonIcon:
                 icon: 'plus'
@@ -79,6 +81,7 @@ Manager:
 
     Screen:
         id:LanguageScreen
+        name:'LanguageScreen'
 
         Image:
             source: 'GLSA.png'
@@ -92,7 +95,7 @@ Manager:
             
         MDButton:
             pos_hint: {'center_x': 0.5, 'center_y': 0.7}
-            on_release: root.Next("French")
+            on_release: root.Language("French")
 
             MDButtonIcon:
                 icon: 'plus'
@@ -102,7 +105,7 @@ Manager:
 
         MDButton:
             pos_hint: {'center_x': 0.5, 'center_y': 0.6}
-            on_release: root.Next("Spanish")
+            on_release: root.Language("Spanish")
 
             MDButtonIcon:
                 icon: 'plus'
@@ -112,7 +115,7 @@ Manager:
 
         MDButton:
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-            on_release: root.Next("German")
+            on_release: root.Language("German")
 
             MDButtonIcon:
                 icon: 'plus'
@@ -122,7 +125,7 @@ Manager:
 
         MDButton:
             pos_hint: {'center_x': 0.5, 'center_y': 0.4}
-            on_release: root.Next("Portuguese")
+            on_release: root.Language("Portuguese")
 
             MDButtonIcon:
                 icon: 'plus'
@@ -132,7 +135,7 @@ Manager:
 
         MDButton:
             pos_hint: {'center_x': 0.5, 'center_y': 0.3}
-            on_release: root.Next("Japanese")
+            on_release: root.Language("Japanese")
 
             MDButtonIcon:
                 icon: 'plus'
@@ -148,6 +151,8 @@ Manager:
     
     Screen:
         id:DifficultyScreen
+        name:'DifficultyScreen'
+
         Image:
             source: 'GLSA.png'
             halign: 'center'
@@ -160,7 +165,7 @@ Manager:
                 
         MDButton:
             pos_hint: {'center_x': 0.5, 'center_y': 0.6}
-            on_release: root.Next(1)
+            on_release: root.Difficulty(1)
 
             MDButtonIcon:
                 icon: 'plus'
@@ -170,7 +175,7 @@ Manager:
 
         MDButton:
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-            on_release: root.Next(2)
+            on_release: root.Difficulty(2)
 
             MDButtonIcon:
                 icon: 'plus'
@@ -180,7 +185,7 @@ Manager:
 
         MDButton:
             pos_hint: {'center_x': 0.5, 'center_y': 0.4}
-            on_release: root.Next(3)
+            on_release: root.Difficulty(3)
 
             MDButtonIcon:
                 icon: 'plus'
@@ -196,9 +201,10 @@ Manager:
 
     Screen:
         id:PromptScreen
+        name:'PromptScreen'
         MDLabel:
             id: prompt_output
-            text: "root.response"
+            text: root.response
             halign: 'center'
-            pos_hint: {'center_x': 0.5, 'center_y': 0.9}
-            text_color: 'purple'    
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            text_color: 'yellow'    
