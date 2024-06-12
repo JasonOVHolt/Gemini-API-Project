@@ -1,0 +1,204 @@
+Manager:
+    Screen:
+        id:HomeScreen
+
+        Image:
+            source: 'GLSA.png'
+            halign: 'center'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.87}
+        
+        MDDivider: #Horizontal Divider
+            size_hint_x: 1
+            pos_hint: {'center_x': .5, 'center_y': .74}
+            color: '#1b1b1b'
+
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            on_release: root.Next("TEST")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Go to next screen'
+
+        MDLabel:
+            text: 'Home Screen'
+            halign: 'center'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.08}
+            text_color: 'grey'
+    
+    Screen:
+        id:GenreScreen
+
+        Image:
+            source: 'GLSA.png'
+            halign: 'center'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.87}
+
+        MDDivider: #Horizontal Divider
+            size_hint_x: 1
+            pos_hint: {'center_x': .5, 'center_y': .74}
+            color: '#1b1b1b'
+
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            on_release: root.Next("a Space adventure")
+
+            MDButtonIcon:
+                icon: 'alien'
+
+            MDButtonText:
+                text: 'Space Adventure'
+        
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+            on_release: root.Next("a Road Trip")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Road Trip'
+        
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+            on_release: root.Next("a video game")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Video Game'
+
+        MDLabel:
+            text: 'Genre Screen'
+            halign: 'center'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.08}
+            text_color: 'grey'
+
+    Screen:
+        id:LanguageScreen
+
+        Image:
+            source: 'GLSA.png'
+            halign: 'center'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.87}
+
+        MDDivider: #Horizontal Divider
+            size_hint_x: 1
+            pos_hint: {'center_x': .5, 'center_y': .74}
+            color: '#1b1b1b'
+            
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+            on_release: root.Next("French")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'French'
+
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+            on_release: root.Next("Spanish")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Spanish'
+
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            on_release: root.Next("German")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'German'
+
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+            on_release: root.Next("Portuguese")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Portuguese'
+
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+            on_release: root.Next("Japanese")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Japanese'
+
+        MDLabel:
+            text: 'Language Screen'
+            halign: 'center'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.08}
+            text_color: 'grey'
+    
+    Screen:
+        id:DifficultyScreen
+        Image:
+            source: 'GLSA.png'
+            halign: 'center'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.87}
+
+        MDDivider: #Horizontal Divider
+            size_hint_x: 1
+            pos_hint: {'center_x': .5, 'center_y': .74}
+            color: '#1b1b1b'
+                
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+            on_release: root.Next(1)
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Easy'
+
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            on_release: root.Next(2)
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Medium'
+
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+            on_release: root.Next(3)
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Hard'
+
+        MDLabel:
+            text: 'Difficulty Screen'
+            halign: 'center'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.08}
+            text_color: 'grey'
+
+    Screen:
+        id:PromptScreen
+        MDLabel:
+            id: prompt_output
+            text: "root.response"
+            halign: 'center'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.9}
+            text_color: 'purple'    

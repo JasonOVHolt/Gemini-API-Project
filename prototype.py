@@ -1,9 +1,10 @@
 from kivymd.app import MDApp
 from kivymd.uix.button import MDButton, MDButtonText
+from kivymd.uix.label import MDLabel
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
-from kivy.properties import StringProperty
+from kivy.properties import StringProperty, ObjectProperty
 
 from gemini import *
 
@@ -37,28 +38,35 @@ class LanguageScreen(Screen):
         sm.current = 'DifficultyScreen'
     pass
 class DifficultyScreen(Screen):
-    def Next(*args):
+    def Next(self,diff):
         global sm
         global PromptDifficulty
-        PromptDifficulty = args[1]
+        PromptDifficulty = diff
         print("Genre: " + PromptGenre + ", Language: " + PromptLanguage + ", Difficulty: " + str(PromptDifficulty))
-        PromptScreen.UpdateText(generateStory(PromptGenre,PromptLanguage,PromptDifficulty))
+        promptText = "TEST"#generateStory(PromptGenre,PromptLanguage,PromptDifficulty)
+        PromptScreen.UpdatePromptText(self,promptText) 
+        #print(PromptScreen.response)
         sm.current = 'PromptScreen'
     pass
 
 
 
 class PromptScreen(Screen):
-    response = StringProperty("L")
+    response = StringProperty("L",rebind=True)
 
-    def UpdateText(gemini):
-        print(gemini)
-        response = gemini
-    pass
+    def on_response(self,instance,value):
+        print("Value Changed")
+
+    def UpdatePromptText(self,gemini):       
+        PromptScreen.response = gemini
+        currentApp = MDApp.get_running_app()
+        sm.id.prompt_output.text = f'{PromptScreen.response}'
 
 
 
 class PrototypeApp(MDApp):
+    
+
     def build(self):
         self.theme_cls.theme_style_switch_animation = True
         self.theme_cls.theme_style = "Dark"
@@ -73,7 +81,9 @@ class PrototypeApp(MDApp):
         sm.add_widget(DifficultyScreen(name = 'DifficultyScreen'))
         sm.add_widget(PromptScreen(name = 'PromptScreen'))        
 
+
         return sm
+    
     
 
 

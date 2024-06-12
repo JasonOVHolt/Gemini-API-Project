@@ -34,8 +34,8 @@ def generateStory(g,l,d): #Generates the story given the corresponding topic, la
 
     gemini_response.replace("#","") #Gets rid of # when provided in gemini response as Title
 
-    myobj = gTTS(text=gemini_response, lang=language, slow=False, lang_check= False) #Creates text-to-speech with prompt and language code
-    myobj.save("prompt.mp3") #Saves text-to-speech file
+    #myobj = gTTS(text=gemini_response, lang=language, slow=False, lang_check= False) #Creates text-to-speech with prompt and language code
+    #myobj.save("prompt.mp3") #Saves text-to-speech file
 
     return gemini_response
     ###End loading screen here
