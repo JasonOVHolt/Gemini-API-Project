@@ -15,11 +15,8 @@ def generateStory(g,l,d): #Generates the story given the corresponding topic, la
     PromptGenre = g
     PromptLanguage = l
     PromptDifficulty = d
-    print("Genre: " + PromptGenre + ", Language: " + PromptLanguage + ", Difficulty: " + str(PromptDifficulty))
+
     prompt = Difficulty(PromptGenre,PromptLanguage,PromptDifficulty) #Generates the prompt depending on genre, language, and difficulty
-
-
-
     
     genai.configure(api_key=os.getenv('GEMINI_API_KEY')) #Configures Gemini API with API Key from environmnet variable
 
@@ -32,13 +29,31 @@ def generateStory(g,l,d): #Generates the story given the corresponding topic, la
 
     language = LanguageCode(PromptLanguage) #Converts language into corresponding language code for use with text-to-speech
 
-    gemini_response.replace("#","") #Gets rid of # when provided in gemini response as Title
-
+    keyword = [5]
+    keyword = gemini_response.splitlines()
+    mKeyword = list()
+    mKeyword = list(filter(None,keyword))
     #myobj = gTTS(text=gemini_response, lang=language, slow=False, lang_check= False) #Creates text-to-speech with prompt and language code
     #myobj.save("prompt.mp3") #Saves text-to-speech file
-
-    return gemini_response
+    
+    mResponse = FormatPrompt(mKeyword)
+    
+    return mResponse
     ###End loading screen here
+
+def FormatPrompt(keyword):
+    modifiedResponse = list()
+    for x in range(len(keyword)):
+        if keyword[x][0] == "#":
+            print("")
+        elif keyword[x][0] == "1" or keyword[x][0] == "2" or keyword[x][0] == "3" or keyword[x][0] == "4" or keyword[x][0] == "5":
+           modifiedResponse.append(keyword[x]) 
+        else:
+            modifiedResponse.append(keyword[x])
+    
+    return modifiedResponse
+        
+    
 
 
 

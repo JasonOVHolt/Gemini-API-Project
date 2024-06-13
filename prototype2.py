@@ -6,6 +6,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
 from kivy.properties import StringProperty, ObjectProperty
 from kivymd.uix.scrollview import MDScrollView
+from kivy.core.audio import SoundLoader
 
 from gemini import *
 
@@ -19,7 +20,12 @@ Window.size = (h_ratio, v_ratio)
 sm = ObjectProperty()
 
 class Manager(ScreenManager):
-    response = ""
+    response = list()
+
+    def PlayPrompt(*args):
+        sound = SoundLoader.load("prompt.mp3")
+        sound.play()
+        print("Audio Should be Playing")
 
     def Next(*args):
         global sm
@@ -52,7 +58,8 @@ class Manager(ScreenManager):
         print("Genre: " + PromptGenre + ", Language: " + PromptLanguage + ", Difficulty: " + str(PromptDifficulty))
         global response
         response = generateStory(PromptGenre,PromptLanguage,PromptDifficulty)
-        args[0].ids.prompt_output.text = response
+        args[0].ids.prompt_output.text = response[0]
+        args[0].ids.question_output.text = response[1] + "\n" + response[2] + "\n" + response[3] + "\n" + response[4] + "\n" + response[5]
         sm.current = 'PromptScreen'
 
     
@@ -70,9 +77,7 @@ class PrototypeApp(MDApp):
         kv = Builder.load_file("prototype2.kv")
 
         return kv
-    
-    def Next(self):
-        print("Epic")
+
 
 
 PrototypeApp().run()

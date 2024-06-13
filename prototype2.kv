@@ -21,7 +21,7 @@ Manager:
                 icon: 'plus'
 
             MDButtonText:
-                text: 'Go to next screen'
+                text: 'Begin'
 
         MDLabel:
             text: 'Home Screen'
@@ -44,7 +44,7 @@ Manager:
             color: '#1b1b1b'
 
         MDButton:
-            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.7}
             on_release: root.Genre("EL")
 
             MDButtonIcon:
@@ -54,7 +54,7 @@ Manager:
                 text: 'Everyday Life'
         
         MDButton:
-            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.6}
             on_release: root.Genre("SF")
 
             MDButtonIcon:
@@ -64,7 +64,7 @@ Manager:
                 text: 'Science Fiction'
         
         MDButton:
-            pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
             on_release: root.Genre("HS")
 
             MDButtonIcon:
@@ -72,6 +72,26 @@ Manager:
 
             MDButtonText:
                 text: 'History'
+
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+            on_release: root.Genre("FA")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Fantasy'
+
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+            on_release: root.Genre("HO")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Horror'
 
         MDLabel:
             text: 'Genre Screen'
@@ -94,7 +114,7 @@ Manager:
             color: '#1b1b1b'
 
         MDButton:
-            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.7}
             on_release: root.Topic("going on a trip to the mall")
 
             MDButtonIcon:
@@ -104,7 +124,7 @@ Manager:
                 text: 'Trip to the mall'
         
         MDButton:
-            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.6}
             on_release: root.Topic("a Road Trip")
 
             MDButtonIcon:
@@ -114,7 +134,7 @@ Manager:
                 text: 'Road Trip'
         
         MDButton:
-            pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
             on_release: root.Topic("getting a haircut")
 
             MDButtonIcon:
@@ -122,6 +142,26 @@ Manager:
 
             MDButtonText:
                 text: 'Trip to get a Haircut'
+
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+            on_release: root.Topic("going to the movies")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Trip to the movies'
+
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+            on_release: root.Topic("a person's everyday life")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Average Day'
 
         MDLabel:
             text: 'Everyday Life Stories'
@@ -144,7 +184,7 @@ Manager:
             color: '#1b1b1b'
 
         MDButton:
-            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.7}
             on_release: root.Topic("a space adventure")
 
             MDButtonIcon:
@@ -154,7 +194,7 @@ Manager:
                 text: 'Space Journey'
         
         MDButton:
-            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.6}
             on_release: root.Topic("time travel")
 
             MDButtonIcon:
@@ -164,7 +204,7 @@ Manager:
                 text: 'Time Travel'
         
         MDButton:
-            pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
             on_release: root.Topic("a robot uprising")
 
             MDButtonIcon:
@@ -172,6 +212,26 @@ Manager:
 
             MDButtonText:
                 text: 'Robot Takeover'
+
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+            on_release: root.Topic("a vampire and a werewolf")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Vampires & Werewolves'
+        
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+            on_release: root.Topic("an alien abduction")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Alien Abduction'
 
         MDLabel:
             text: 'Science Fiction Stories'
@@ -194,7 +254,7 @@ Manager:
             color: '#1b1b1b'
 
         MDButton:
-            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.7}
             on_release: root.Topic("a western adventure")
 
             MDButtonIcon:
@@ -204,7 +264,7 @@ Manager:
                 text: 'Western'
         
         MDButton:
-            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.6}
             on_release: root.Topic("an industrial revolution adventure")
 
             MDButtonIcon:
@@ -212,6 +272,26 @@ Manager:
 
             MDButtonText:
                 text: 'Industrial Revolution'
+        
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            on_release: root.Topic("an adventure in the middle ages")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Middle Ages'
+
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+            on_release: root.Topic("an adventure during world war II")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'World War II'
         
         MDButton:
             pos_hint: {'center_x': 0.5, 'center_y': 0.3}
@@ -222,6 +302,148 @@ Manager:
 
             MDButtonText:
                 text: 'Ancient Egypt'
+
+
+        MDLabel:
+            text: 'Historical Stories'
+            halign: 'center'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.08}
+            text_color: 'grey'
+
+    MDScreen:   #FANTASY TOPIC
+        id:FATopicScreen
+        name:'FATopicScreen'
+
+        Image:
+            source: 'GLSA.png'
+            halign: 'center'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.87}
+
+        MDDivider: #Horizontal Divider
+            size_hint_x: 1
+            pos_hint: {'center_x': .5, 'center_y': .74}
+            color: '#1b1b1b'
+
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+            on_release: root.Topic("unicorns")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Unicorns'
+        
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+            on_release: root.Topic("a wizard's adventure")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Witchcraft & Wizardry'
+        
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            on_release: root.Topic("dragons")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Dragons'
+
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+            on_release: root.Topic("a heroic quest")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Heroic Quest'
+        
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+            on_release: root.Topic("a person who finds themself in a different magical world")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Brand New World'
+
+        MDLabel:
+            text: 'Historical Stories'
+            halign: 'center'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.08}
+            text_color: 'grey'
+
+    MDScreen:   #HORROR TOPIC
+        id:HOTopicScreen
+        name:'HOTopicScreen'
+
+        Image:
+            source: 'GLSA.png'
+            halign: 'center'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.87}
+
+        MDDivider: #Horizontal Divider
+            size_hint_x: 1
+            pos_hint: {'center_x': .5, 'center_y': .74}
+            color: '#1b1b1b'
+
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+            on_release: root.Topic("a haunted doll")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Haunted Doll'
+        
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+            on_release: root.Topic("a monster who hunts people down")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Monster'
+        
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            on_release: root.Topic("a haunted house")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Haunted House'
+        
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+            on_release: root.Topic("a killer on the loose")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Serial Killer'
+        
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+            on_release: root.Topic("ghosts")
+
+            MDButtonIcon:
+                icon: 'plus'
+
+            MDButtonText:
+                text: 'Ghosts'
+
 
         MDLabel:
             text: 'Historical Stories'
@@ -364,9 +586,25 @@ Manager:
     MDScreen:   #PROMPT
         id:PromptScreen
         name:'PromptScreen'
+
         MDLabel:
             id: prompt_output
-            text: root.response
+            text: "L"
+            halign: 'center'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+            text_color: 'yellow'   
+        MDLabel:
+            id: question_output
+            text: "L"
             halign: 'center'
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}
             text_color: 'yellow'    
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+            on_release: root.PlayPrompt()
+
+            MDButtonIcon:
+                icon: 'play'
+
+            MDButtonText:
+                text: 'Play Audio'
