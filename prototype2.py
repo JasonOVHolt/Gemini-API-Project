@@ -7,10 +7,9 @@ from kivy.core.window import Window
 from kivy.properties import StringProperty, ObjectProperty
 from kivymd.uix.scrollview import MDScrollView
 from kivy.core.audio import SoundLoader
+from kivymd.icon_definitions import md_icons
 
 from gemini import *
-
-from functools import partial
 
 #Horizontal and Vertical Aspect ratio default to 16:9
 h_ratio = 450
@@ -22,6 +21,7 @@ sm = ObjectProperty()
 class Manager(ScreenManager):
     response = list()
 
+    
     def PlayPrompt(*args):
         sound = SoundLoader.load("prompt.mp3")
         sound.play()
@@ -31,7 +31,6 @@ class Manager(ScreenManager):
         global sm
         sm = args[0]
         sm.current = 'GenreScreen'
-
 
     def Genre(*args):
         global sm
@@ -43,7 +42,6 @@ class Manager(ScreenManager):
         global PromptGenre
         PromptGenre = args[1]
         sm.current = 'LanguageScreen'
-
 
     def Language(*args):
         global sm
@@ -76,6 +74,7 @@ class PrototypeApp(MDApp):
 
         kv = Builder.load_file("prototype2.kv")
 
+        
         return kv
 
 
