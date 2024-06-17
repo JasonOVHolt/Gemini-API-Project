@@ -26,6 +26,7 @@ share/python-wheels/
 *.egg
 MANIFEST
 
+
 #GenerateFiles
 prompt.mp3
 
@@ -124,7 +125,8 @@ celerybeat.pid
 
 # Environments
 .env
-.venv
+*.venv
+!.venv/Lib/site-packages/kivymd
 env/
 venv/
 ENV/
