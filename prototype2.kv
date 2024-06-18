@@ -592,15 +592,114 @@ Manager:
             text: "L"
             halign: 'center'
             pos_hint: {'center_x': 0.5, 'center_y': 0.8}
-            text_color: 'yellow'   
+            text_color: '#6183e2'
+            size_hint_x: 0.95
+
+        MDDivider: #Horizontal Divider
+            size_hint_x: 1
+            pos_hint: {'center_x': .5, 'center_y': 0.6}
+            color: '#1b1b1b'
+
         MDLabel:
             id: question_output
             text: "L"
             halign: 'center'
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-            text_color: 'yellow'    
+            text_color: '#6183e2'
+            size_hint_x: 0.95
+
+        MDTextField: #TextField 1
+            mode: "outlined"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.35}
+            size_hint_x: 0.8
+
+            MDTextFieldLeadingIcon:
+                icon: "numeric-1"
+
+            MDTextFieldHelperText:
+                text: "Question #1"
+                mode: "persistent"
+
+            MDTextFieldTrailingIcon:
+                icon: "information"
+
+            MDTextFieldMaxLengthText:
+                max_text_length: 200
+
+        MDTextField: #TextField 2
+            mode: "outlined"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.30}
+            size_hint_x: 0.8
+
+            MDTextFieldLeadingIcon:
+                icon: "numeric-2"
+
+            MDTextFieldHelperText:
+                text: "Question #2"
+                mode: "persistent"
+
+            MDTextFieldTrailingIcon:
+                icon: "information"
+
+            MDTextFieldMaxLengthText:
+                max_text_length: 200
+
+        MDTextField: #TextField 3
+            mode: "outlined"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.25}
+            size_hint_x: 0.8
+
+            MDTextFieldLeadingIcon:
+                icon: "numeric-3"
+
+            MDTextFieldHelperText:
+                text: "Question #3"
+                mode: "persistent"
+
+            MDTextFieldTrailingIcon:
+                icon: "information"
+
+            MDTextFieldMaxLengthText:
+                max_text_length: 200
+
+        MDTextField: #TextField 4
+            mode: "outlined"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.20}
+            size_hint_x: 0.8
+
+            MDTextFieldLeadingIcon:
+                icon: "numeric-4"
+
+            MDTextFieldHelperText:
+                text: "Question #4"
+                mode: "persistent"
+
+            MDTextFieldTrailingIcon:
+                icon: "information"
+
+            MDTextFieldMaxLengthText:
+                max_text_length: 200
+
+        MDTextField: #TextField 5
+            mode: "outlined"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.15}
+            size_hint_x: 0.8
+
+            MDTextFieldLeadingIcon:
+                icon: "numeric-5"
+
+            MDTextFieldHelperText:
+                text: "Question #5"
+                mode: "persistent"
+
+            MDTextFieldTrailingIcon:
+                icon: "information"
+
+            MDTextFieldMaxLengthText:
+                max_text_length: 200
+
         MDButton:
-            pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.05}
             on_release: root.PlayPrompt()
 
             MDButtonIcon:
