@@ -465,67 +465,84 @@ Manager:
             pos_hint: {'center_x': .5, 'center_y': .74}
             color: '#1b1b1b'
 
-        ScrollView:
-            do_scroll_x: False
-            do_scroll_y: True
-            pos_hint: {'center_x': .5, 'center_y': .1}
+
             
-            MDBoxLayout:
-                id: main_scroll
-                orientation: "vertical"
-                spacing: 20
-                adaptive_height: True
-                pos_hint: {'center_x': .5, 'center_y': .5}
+        MDBoxLayout:
+            id: main_scroll
+            orientation: "vertical"
+            spacing: 30
+            adaptive_height: True
+            pos_hint: {'center_x': .5, 'center_y': .45}
 
-                MDButton:
-                    pos_hint: {'center_x': 0.5, 'center_y': 0.7}
-                    on_release: root.Language("French")
+            MDButton:
+                pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+                on_release: root.Language("French")
 
-                    MDButtonIcon:
-                        icon: 'plus'
+                MDButtonIcon:
+                    icon: 'plus'
 
-                    MDButtonText:
-                        text: 'French'
+                MDButtonText:
+                    text: 'French'
 
-                MDButton:
-                    pos_hint: {'center_x': 0.5, 'center_y': 0.6}
-                    on_release: root.Language("Spanish")
+            MDButton:
+                pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+                on_release: root.Language("Spanish")
 
-                    MDButtonIcon:
-                        icon: 'plus'
+                MDButtonIcon:
+                    icon: 'plus'
 
-                    MDButtonText:
-                        text: 'Spanish'
+                MDButtonText:
+                    text: 'Spanish'
 
-                MDButton:
-                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-                    on_release: root.Language("German")
+            MDButton:
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                on_release: root.Language("German")
 
-                    MDButtonIcon:
-                        icon: 'plus'
+                MDButtonIcon:
+                    icon: 'plus'
 
-                    MDButtonText:
-                        text: 'German'
+                MDButtonText:
+                    text: 'German'
 
-                MDButton:
-                    pos_hint: {'center_x': 0.5, 'center_y': 0.4}
-                    on_release: root.Language("Portuguese")
+            MDButton:
+                pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+                on_release: root.Language("Portuguese")
 
-                    MDButtonIcon:
-                        icon: 'plus'
+                MDButtonIcon:
+                    icon: 'plus'
 
-                    MDButtonText:
-                        text: 'Portuguese'
+                MDButtonText:
+                    text: 'Portuguese'
 
-                MDButton:
-                    pos_hint: {'center_x': 0.5, 'center_y': 0.3}
-                    on_release: root.Language("Japanese")
+            MDButton:
+                pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+                on_release: root.Language("Japanese")
 
-                    MDButtonIcon:
-                        icon: 'plus'
+                MDButtonIcon:
+                    icon: 'plus'
 
-                    MDButtonText:
-                        text: 'Japanese'
+                MDButtonText:
+                    text: 'Japanese'
+
+            MDButton:
+                pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+                on_release: root.Language("Chinese")
+
+                MDButtonIcon:
+                    icon: 'plus'
+
+                MDButtonText:
+                    text: 'Chinese (Mandarin)'
+
+            MDButton:
+                pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+                on_release: root.Language("Italian")
+
+                MDButtonIcon:
+                    icon: 'plus'
+
+                MDButtonText:
+                    text: 'Italian'
 
         MDLabel:
             text: 'Language Screen'
@@ -591,7 +608,7 @@ Manager:
             id: prompt_output
             text: "L"
             halign: 'center'
-            pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.85}
             text_color: '#6183e2'
             size_hint_x: 0.95
 
@@ -600,107 +617,100 @@ Manager:
             pos_hint: {'center_x': .5, 'center_y': 0.6}
             color: '#1b1b1b'
 
-        MDLabel:
-            id: question_output
-            text: "L"
-            halign: 'center'
-            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-            text_color: '#6183e2'
-            size_hint_x: 0.95
+        MDBoxLayout:
+            id: main_scroll
+            orientation: "vertical"
+            spacing: 25
+            adaptive_height: True
+            pos_hint: {'center_x': .5, 'center_y': .4}
 
-        MDTextField: #TextField 1
-            mode: "outlined"
-            pos_hint: {'center_x': 0.5, 'center_y': 0.35}
-            size_hint_x: 0.8
+            MDLabel:
+                id: question_output1
+                text: "L"
+                halign: 'center'
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                text_color: '#6183e2'
+                size_hint_x: 0.95
 
-            MDTextFieldLeadingIcon:
-                icon: "numeric-1"
+            MDTextField: #TextField 1
+                mode: "outlined"
+                pos_hint: {'center_x': 0.5, 'center_y': 0.35}
+                size_hint_x: 0.8
 
-            MDTextFieldHelperText:
-                text: "Question #1"
-                mode: "persistent"
+                MDTextFieldLeadingIcon:
+                    icon: "numeric-1"
 
-            MDTextFieldTrailingIcon:
-                icon: "information"
+            MDLabel:
+                id: question_output2
+                text: "L"
+                halign: 'center'
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                text_color: '#6183e2'
+                size_hint_x: 0.95
 
-            MDTextFieldMaxLengthText:
-                max_text_length: 200
+            MDTextField: #TextField 2
+                mode: "outlined"
+                pos_hint: {'center_x': 0.5, 'center_y': 0.30}
+                size_hint_x: 0.8
 
-        MDTextField: #TextField 2
-            mode: "outlined"
-            pos_hint: {'center_x': 0.5, 'center_y': 0.30}
-            size_hint_x: 0.8
+                MDTextFieldLeadingIcon:
+                    icon: "numeric-2"
 
-            MDTextFieldLeadingIcon:
-                icon: "numeric-2"
 
-            MDTextFieldHelperText:
-                text: "Question #2"
-                mode: "persistent"
+            MDLabel:
+                id: question_output3
+                text: "L"
+                halign: 'center'
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                text_color: '#6183e2'
+                size_hint_x: 0.95
 
-            MDTextFieldTrailingIcon:
-                icon: "information"
+            MDTextField: #TextField 3
+                mode: "outlined"
+                pos_hint: {'center_x': 0.5, 'center_y': 0.25}
+                size_hint_x: 0.8
 
-            MDTextFieldMaxLengthText:
-                max_text_length: 200
+                MDTextFieldLeadingIcon:
+                    icon: "numeric-3"
 
-        MDTextField: #TextField 3
-            mode: "outlined"
-            pos_hint: {'center_x': 0.5, 'center_y': 0.25}
-            size_hint_x: 0.8
 
-            MDTextFieldLeadingIcon:
-                icon: "numeric-3"
+            MDLabel:
+                id: question_output4
+                text: "L"
+                halign: 'center'
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                text_color: '#6183e2'
+                size_hint_x: 0.95
 
-            MDTextFieldHelperText:
-                text: "Question #3"
-                mode: "persistent"
+            MDTextField: #TextField 4
+                mode: "outlined"
+                pos_hint: {'center_x': 0.5, 'center_y': 0.20}
+                size_hint_x: 0.8
 
-            MDTextFieldTrailingIcon:
-                icon: "information"
+                MDTextFieldLeadingIcon:
+                    icon: "numeric-4"
 
-            MDTextFieldMaxLengthText:
-                max_text_length: 200
 
-        MDTextField: #TextField 4
-            mode: "outlined"
-            pos_hint: {'center_x': 0.5, 'center_y': 0.20}
-            size_hint_x: 0.8
+            MDLabel:
+                id: question_output5
+                text: "L"
+                halign: 'center'
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                text_color: '#6183e2'
+                size_hint_x: 0.95
 
-            MDTextFieldLeadingIcon:
-                icon: "numeric-4"
+            MDTextField: #TextField 5
+                mode: "outlined"
+                pos_hint: {'center_x': 0.5, 'center_y': 0.15}
+                size_hint_x: 0.8
 
-            MDTextFieldHelperText:
-                text: "Question #4"
-                mode: "persistent"
+                MDTextFieldLeadingIcon:
+                    icon: "numeric-5"
 
-            MDTextFieldTrailingIcon:
-                icon: "information"
-
-            MDTextFieldMaxLengthText:
-                max_text_length: 200
-
-        MDTextField: #TextField 5
-            mode: "outlined"
-            pos_hint: {'center_x': 0.5, 'center_y': 0.15}
-            size_hint_x: 0.8
-
-            MDTextFieldLeadingIcon:
-                icon: "numeric-5"
-
-            MDTextFieldHelperText:
-                text: "Question #5"
-                mode: "persistent"
-
-            MDTextFieldTrailingIcon:
-                icon: "information"
-
-            MDTextFieldMaxLengthText:
-                max_text_length: 200
 
         MDButton:
             pos_hint: {'center_x': 0.5, 'center_y': 0.05}
-            on_release: root.PlayPrompt()
+            on_release: root.AudioPlayback()
 
             MDButtonIcon:
                 icon: 'play'

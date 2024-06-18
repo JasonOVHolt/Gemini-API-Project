@@ -86,6 +86,10 @@ def LanguageCode(lang):
         x = "pt"
     elif lang == "Japanese":
         x = "ja"
+    elif lang == "Italian":
+        x = "it"
+    elif lang == "Chinese":
+        x = "zh"
     
     return x
 

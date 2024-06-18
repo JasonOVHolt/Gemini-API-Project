@@ -57,10 +57,14 @@ class Manager(ScreenManager):
         global response
         response = generateStory(PromptGenre,PromptLanguage,PromptDifficulty)
         args[0].ids.prompt_output.text = response[0]
-        args[0].ids.question_output.text = response[1] + "\n" + response[2] + "\n" + response[3] + "\n" + response[4] + "\n" + response[5]
+        args[0].ids.question_output1.text = response[1]
+        args[0].ids.question_output2.text = response[2]
+        args[0].ids.question_output3.text = response[3]
+        args[0].ids.question_output4.text = response[4]
+        args[0].ids.question_output5.text =  response[5]
         sm.current = 'PromptScreen'
 
-    
+
     pass
 
 
