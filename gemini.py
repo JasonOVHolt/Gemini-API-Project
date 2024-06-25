@@ -11,6 +11,17 @@ defaultLanguage = "English"
 prompt = ""
 gemini_response = ""
 
+genai.configure(api_key=os.getenv('GEMINI_API_KEY')) #Configures Gemini API with API Key from environmnet variable
+model = genai.GenerativeModel('gemini-1.5-pro-latest') #Selects Gemini Model
+chat = model.start_chat(history=[]) #Begins conversation chat with gemini
+
+def validKey(): #Verifies api key is valid
+    try:
+        model.generate_content("Hello") #Sends Simple message to see if an error occurs
+    except:
+        return False
+    return True
+
 def generateStory(g,l,d): #Generates the story given the corresponding topic, language and difficulty
     PromptGenre = g
     PromptLanguage = l
@@ -18,10 +29,9 @@ def generateStory(g,l,d): #Generates the story given the corresponding topic, la
 
     prompt = Difficulty(PromptGenre,PromptLanguage,PromptDifficulty) #Generates the prompt depending on genre, language, and difficulty
     
-    genai.configure(api_key=os.getenv('GEMINI_API_KEY')) #Configures Gemini API with API Key from environmnet variable
+    global model
+    global chat
 
-    model = genai.GenerativeModel('gemini-1.5-pro-latest') #Selects Gemini Model
-    chat = model.start_chat(history=[]) #Begins conversation chat with gemini
     chat
 
     gemini_response = chat.send_message(prompt).text #Sends prompt to Gemini
@@ -29,7 +39,7 @@ def generateStory(g,l,d): #Generates the story given the corresponding topic, la
 
     language = LanguageCode(PromptLanguage) #Converts language into corresponding language code for use with text-to-speech
 
-    keyword = [5]
+    keyword = [5]   #Formatting response for better output
     keyword = gemini_response.splitlines()
     mKeyword = list()
     mKeyword = list(filter(None,keyword))
@@ -43,7 +53,7 @@ def generateStory(g,l,d): #Generates the story given the corresponding topic, la
     return mResponse
     ###End loading screen here
 
-def FormatPrompt(keyword):
+def FormatPrompt(keyword):      #Determines wheater item is a question or not
     modifiedResponse = list()
     for x in range(len(keyword)):
         if keyword[x][0] == "#":
@@ -55,8 +65,6 @@ def FormatPrompt(keyword):
     
     return modifiedResponse
         
-    
-
 
 
 def BeginStory(*args):
@@ -65,7 +73,7 @@ def BeginStory(*args):
 
     generateStory(PromptGenre,PromptLanguage,PromptDifficulty) #Generates story with the genre and language and eventually difficulty 
 
-def Difficulty(genre,language,diff):
+def Difficulty(genre,language,diff):    #Defines how difficulty effects story generation
     if diff == 1:
         return "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + defaultLanguage
     elif diff == 2:
@@ -73,7 +81,7 @@ def Difficulty(genre,language,diff):
     elif diff == 3:
         return "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + language
 
-def LanguageCode(lang):
+def LanguageCode(lang):     #Converts language into lang code for text-to-speech generation
     if lang == "Spanish":
         x = "es"
     elif lang == "English":
@@ -93,35 +101,6 @@ def LanguageCode(lang):
     
     return x
 
-   
-def changelanguage(*args):
-    global PromptLanguage
-   
-    if PromptLanguage == "Spanish":
-        PromptLanguage = "English"
-    elif PromptLanguage == "English":
-        PromptLanguage = "French"
-    elif PromptLanguage == "French":
-        PromptLanguage = "German"
-    elif PromptLanguage == "German":
-        PromptLanguage = "Portuguese"
-    elif PromptLanguage == "Portuguese":
-        PromptLanguage = "Japanese"
-    elif PromptLanguage == "Japanese":
-        PromptLanguage = "Spanish"
-    print("Current Language: " + PromptLanguage)
-
-def changeDifficulty(*args):
-    print(args[0])
-    global PromptDifficulty
-    if(PromptDifficulty == 1):
-        PromptDifficulty = 2
-        print("Current Difficulty: Medium")
-    elif(PromptDifficulty == 2):
-        PromptDifficulty = 3
-        print("Current Difficulty: Hard")
-    elif(PromptDifficulty == 3):
-        PromptDifficulty = 1
-        print("Current Difficulty: Easy")
-    
-
+def CheckAnswers(q1,q2,q3,q4,q5):   #Will be used to check if the answers are correct
+    AnswerResponse = "Are these answers correct: " + q1 + ", " + q2 + ", " + q3 + ", " + q4 + ", " + q5
+    print(chat.send_message(AnswerResponse).text)
