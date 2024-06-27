@@ -1,9 +1,11 @@
 from kivymd.app import MDApp
+from kivy.uix.screenmanager import Screen
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
 from kivy.core.window import Window
 from kivy.properties import ObjectProperty
 from kivy.core.audio import SoundLoader
+from kivy.clock import Clock
 
 from gemini import *
 
@@ -16,9 +18,6 @@ sm = ObjectProperty()
 
 class Manager(ScreenManager):
     response = list()
-
-    def CheckGemini(*args):
-        print(validKey())   #prints whether gemini key is valid
 
     def SetGeminiKey(*args):
         print("Key set")
@@ -35,7 +34,34 @@ class Manager(ScreenManager):
     def Next(*args):    #Called when button on title screen is pressed
         global sm
         sm = args[0]    #Assigns the screenmanager for later use
-        sm.current = 'GenreScreen'  #Switches to genre screen
+
+        global firstTime
+        if firstTime == False and VerifiedKey == True:
+            sm.current = 'GenreScreen'  #Switches to genre screen
+        else:
+            sm.current = 'SettingsScreen'
+
+    def CheckKey(*args):
+        valid = validKey()
+        if valid:
+            args[0].ids.question_output1.text = "response[1]"
+            args[0].ids.KeyValidity.text_color_normal = "Green"
+            args[0].ids.KeyValidity.text = "Valid"
+            global VerifiedKey
+            VerifiedKey = True
+            pass    #Change Text and color to say passed
+        else:
+            args[0].ids.KeyValidity.text_color_normal = "Red"
+            args[0].ids.KeyValidity.text = "NOT Valid"
+            pass    #Change Text and color to say failed
+        pass
+
+    def SaveSettings(*args):
+        #SAVE SETTINGs
+
+        sm.current = 'GenreScreen'
+        pass
+
 
     def Genre(*args):   #Called when a genre is selected
         global sm
@@ -85,6 +111,9 @@ class PrototypeApp(MDApp):
         self.theme_cls.theme_style = "Dark"
 
         kv = Builder.load_file("prototype2.kv")
+
+
+        ####################CHECK FOR KEY STATUS AND IF FIRST TIME
 
         return kv
 

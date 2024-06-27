@@ -2,6 +2,8 @@ import os
 import google.generativeai as genai
 from gtts import gTTS
 
+firstTime = False
+VerifiedKey = True
 
 PromptGenre = "Road Trip"
 PromptLanguage = "Spanish"
@@ -15,11 +17,18 @@ genai.configure(api_key=os.getenv('GEMINI_API_KEY')) #Configures Gemini API with
 model = genai.GenerativeModel('gemini-1.5-pro-latest') #Selects Gemini Model
 chat = model.start_chat(history=[]) #Begins conversation chat with gemini
 
+
+
+
 def validKey(): #Verifies api key is valid
+    global VerifiedKey
     try:
         model.generate_content("Hello") #Sends Simple message to see if an error occurs
     except:
+        
+        VerifiedKey = False
         return False
+    VerifiedKey = True
     return True
 
 def generateStory(g,l,d): #Generates the story given the corresponding topic, language and difficulty
