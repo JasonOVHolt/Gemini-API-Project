@@ -27,8 +27,10 @@ share/python-wheels/
 MANIFEST
 
 
-#GenerateFiles
+
+#Individual Data
 prompt.mp3
+savedData.json
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

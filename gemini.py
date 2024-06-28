@@ -1,34 +1,85 @@
 import os
 import google.generativeai as genai
 from gtts import gTTS
+import json
 
-firstTime = False
-VerifiedKey = True
 
 PromptGenre = "Road Trip"
 PromptLanguage = "Spanish"
 PromptDifficulty = 1
-defaultLanguage = "English"
 
 prompt = ""
 gemini_response = ""
 
-genai.configure(api_key=os.getenv('GEMINI_API_KEY')) #Configures Gemini API with API Key from environmnet variable
+
+def SaveDataSettings(f,v,k,l):
+    print("Saving Settings")
+    dictionary = {
+        "FirstTime": f,
+        "KeyValidity": v,
+        "GeminiKey": k,
+        "DefaultLang": l
+    }
+
+    json_object = json.dumps(dictionary, indent=4)
+ 
+
+    with open("savedData.json", "w") as outfile:
+        outfile.write(json_object)
+
+
+
+
+
+try:
+    f = open('savedData.json')
+    data = json.load(f)
+except:
+    SaveDataSettings(True,False,"L","English")
+    f = open('savedData.json')
+    data = json.load(f)
+    pass
+
+
+
+
+firstTime = data['FirstTime']
+VerifiedKey = data['KeyValidity']
+defaultLanguage = data['DefaultLang']
+
+if VerifiedKey == True:
+    genai.configure(api_key=data['GeminiKey']) #Configures Gemini API with API Key from environmnet variable
+
+
 model = genai.GenerativeModel('gemini-1.5-pro-latest') #Selects Gemini Model
 chat = model.start_chat(history=[]) #Begins conversation chat with gemini
 
 
 
 
+
+def setKey(key):
+    global data
+    data['GeminiKey'] = key
+    print(data['GeminiKey'])
+
+    genai.configure(api_key=key) #Configures Gemini API with API Key
+
+
+
 def validKey(): #Verifies api key is valid
     global VerifiedKey
+    global firstTime
+    global data
+    global defaultLanguage
     try:
         model.generate_content("Hello") #Sends Simple message to see if an error occurs
     except:
-        
         VerifiedKey = False
         return False
+    firstTime = False
     VerifiedKey = True
+    SaveDataSettings(firstTime,VerifiedKey,data['GeminiKey'],defaultLanguage)
     return True
 
 def generateStory(g,l,d): #Generates the story given the corresponding topic, language and difficulty
@@ -74,8 +125,6 @@ def FormatPrompt(keyword):      #Determines wheater item is a question or not
     
     return modifiedResponse
         
-
-
 def BeginStory(*args):
 
     #Start loading screen here

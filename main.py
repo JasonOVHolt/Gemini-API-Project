@@ -19,9 +19,6 @@ sm = ObjectProperty()
 class Manager(ScreenManager):
     response = list()
 
-    def SetGeminiKey(*args):
-        print("Key set")
-
     def SubmitAnswers(*args):   #Checkanswers needs to return list of answers to define label text 
         CheckAnswers(args[0].ids.Q1A.text,args[0].ids.Q2A.text,args[0].ids.Q3A.text,args[0].ids.Q4A.text,args[0].ids.Q5A.text)
         sm.current = 'ResponseScreen'
@@ -42,25 +39,24 @@ class Manager(ScreenManager):
             sm.current = 'SettingsScreen'
 
     def CheckKey(*args):
+        setKey(args[0].ids.KeyText.text)
         valid = validKey()
         if valid:
-            args[0].ids.question_output1.text = "response[1]"
-            args[0].ids.KeyValidity.text_color_normal = "Green"
+            args[0].ids.KeyValidity.text_color_normal = "green"
             args[0].ids.KeyValidity.text = "Valid"
-            global VerifiedKey
-            VerifiedKey = True
             pass    #Change Text and color to say passed
         else:
-            args[0].ids.KeyValidity.text_color_normal = "Red"
+            args[0].ids.KeyValidity.text_color_normal = "red"
             args[0].ids.KeyValidity.text = "NOT Valid"
             pass    #Change Text and color to say failed
         pass
 
-    def SaveSettings(*args):
-        #SAVE SETTINGs
-
-        sm.current = 'GenreScreen'
-        pass
+    def ContinueSettings(*args):
+        global VerifiedKey
+        if VerifiedKey:
+            sm.current = 'GenreScreen'
+        else:
+            pass
 
 
     def Genre(*args):   #Called when a genre is selected

@@ -45,6 +45,7 @@ Manager:
             color: '#1b1b1b'
 
         MDTextField:
+            id: KeyText
             size_hint: .6, .3
             mode: "outlined"
             pos_hint: {'center_x': .375, 'center_y': .5}
@@ -53,8 +54,8 @@ Manager:
                 text: "Gemini API Key"
 
             MDTextFieldHelperText:
-                id: "KeyValidity"
-                text: "NOT Valid"
+                id: KeyValidity
+                text: "N/A"
                 mode: "persistent"
                 text_color_normal: "red"
 
@@ -66,6 +67,12 @@ Manager:
             icon: "check-bold"
             on_release: root.CheckKey()
                 
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+            on_release: root.ContinueSettings()
+            
+            MDButtonText:
+                text: 'Continue'
 
 
         MDLabel:
