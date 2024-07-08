@@ -85,13 +85,14 @@ class Manager(ScreenManager):
         global response
         response = generateStory(PromptGenre,PromptLanguage,PromptDifficulty)   #Generates the story with the criteria and assigns to an array
 
-        args[0].ids.prompt_output.text = response[0]    #Outputs story to screen label
 
-        args[0].ids.question_output1.text = response[1]     #Outputs questions to screen labels
-        args[0].ids.question_output2.text = response[2]
-        args[0].ids.question_output3.text = response[3]
-        args[0].ids.question_output4.text = response[4]
-        args[0].ids.question_output5.text =  response[5]
+        args[0].ids.prompt_output.text = response['story']    #Outputs story to screen label
+
+        args[0].ids.question_output1.text = response['questions'][0]['question']     #Outputs questions to screen labels
+        args[0].ids.question_output2.text = response['questions'][1]['question']
+        args[0].ids.question_output3.text = response['questions'][2]['question']
+        args[0].ids.question_output4.text = response['questions'][3]['question']
+        args[0].ids.question_output5.text = response['questions'][4]['question']
 
         sm.current = 'PromptScreen'     #Switches to the prompt screen
 

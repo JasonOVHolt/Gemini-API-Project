@@ -11,6 +11,12 @@ PromptDifficulty = 1
 prompt = ""
 gemini_response = ""
 
+storyData = ""
+
+
+
+currentAnswers = list()  
+
 
 def SaveDataSettings(f,v,k,l):
     print("Saving Settings")
@@ -46,12 +52,13 @@ except:
 firstTime = data['FirstTime']
 VerifiedKey = data['KeyValidity']
 defaultLanguage = data['DefaultLang']
+geminikey = data['GeminiKey']
 
 if VerifiedKey == True:
-    genai.configure(api_key=data['GeminiKey']) #Configures Gemini API with API Key from environmnet variable
+    genai.configure(api_key=geminikey) #Configures Gemini API with API Key from environmnet variable
 
 
-model = genai.GenerativeModel('gemini-1.5-pro-latest') #Selects Gemini Model
+model = genai.GenerativeModel('gemini-1.5-pro') #Selects Gemini Model
 chat = model.start_chat(history=[]) #Begins conversation chat with gemini
 
 
@@ -92,38 +99,35 @@ def generateStory(g,l,d): #Generates the story given the corresponding topic, la
     global model
     global chat
 
+    
     chat
-
     gemini_response = chat.send_message(prompt).text #Sends prompt to Gemini
     print(gemini_response)
 
+        
+
     language = LanguageCode(PromptLanguage) #Converts language into corresponding language code for use with text-to-speech
 
-    keyword = [5]   #Formatting response for better output
+    keyword = [15]   #Formatting response for better output
     keyword = gemini_response.splitlines()
     mKeyword = list()
     mKeyword = list(filter(None,keyword))
     
-    mResponse = FormatPrompt(mKeyword)
-    
+    mResponse = FormatGeminiJSON(mKeyword)
+    with open('CurrentStory.json', 'w') as f:
+        for line in mResponse:
+            f.write(f"{line}\n")
+    f.close()
     myobj = gTTS(text=mResponse[0], lang=language, slow=False, lang_check= False) #Creates text-to-speech with prompt and language code
     myobj.save("prompt.mp3") #Saves text-to-speech file
 
+    global storyData
+    f = open('CurrentStory.json')
+    storyData = json.load(f)
 
-    return mResponse
+    return storyData
     ###End loading screen here
 
-def FormatPrompt(keyword):      #Determines wheater item is a question or not
-    modifiedResponse = list()
-    for x in range(len(keyword)):
-        if keyword[x][0] == "#":
-            print("")
-        elif keyword[x][0] == "1" or keyword[x][0] == "2" or keyword[x][0] == "3" or keyword[x][0] == "4" or keyword[x][0] == "5":
-           modifiedResponse.append(keyword[x]) 
-        else:
-            modifiedResponse.append(keyword[x])
-    
-    return modifiedResponse
         
 def BeginStory(*args):
 
@@ -133,11 +137,11 @@ def BeginStory(*args):
 
 def Difficulty(genre,language,diff):    #Defines how difficulty effects story generation
     if diff == 1:
-        return "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + defaultLanguage
+        return "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + defaultLanguage + " with answers and format it all in json"
     elif diff == 2:
-        return "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + language
+        return "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + language + " with answers and format the response like this:\n{Story}\n{Question1}\n{Question1Answer}\n{Question2}\n{Question2Answer}\n{Question3}\n{Question3Answer}\n{Question4}\n{Question4Answer}\n{Question5}\n{Question5Answer}"
     elif diff == 3:
-        return "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + language
+        return "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + language + " with answers and format the response like this:\n{Story}\n{Question1}\n{Question1Answer}\n{Question2}\n{Question2Answer}\n{Question3}\n{Question3Answer}\n{Question4}\n{Question4Answer}\n{Question5}\n{Question5Answer}"
 
 def LanguageCode(lang):     #Converts language into lang code for text-to-speech generation
     if lang == "Spanish":
@@ -160,5 +164,16 @@ def LanguageCode(lang):     #Converts language into lang code for text-to-speech
     return x
 
 def CheckAnswers(q1,q2,q3,q4,q5):   #Will be used to check if the answers are correct
-    AnswerResponse = "Are these answers correct: " + q1 + ", " + q2 + ", " + q3 + ", " + q4 + ", " + q5
+    global storyData
+    AnswerResponse = "Are these answers similar to the answers you gave: " + q1 + "AND " + storyData['questions'][0]['answer'] + ";" + q2 + "AND " + storyData['questions'][1]['answer'] + ";"  + q3 + "AND " + storyData['questions'][2]['answer'] + ";"  + q4 + "AND " + storyData['questions'][3]['answer'] + ";"  + q5 + "AND " + storyData['questions'][4]['answer'] + ". Just say correct or wrong for each question and format it all in json."
     print(chat.send_message(AnswerResponse).text)
+
+def FormatGeminiJSON(response):
+    mResponse = list()
+    for x in range(len(response)):
+        if x == 0 or x == (len(response)-1):
+            print("")
+        else:
+            mResponse.append(response[x])
+
+    return mResponse

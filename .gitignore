@@ -34,6 +34,7 @@ MANIFEST
 #Individual Data
 prompt.mp3
 savedData.json
+CurrentStory.json
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
