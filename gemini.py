@@ -18,9 +18,10 @@ storyData = ""
 currentAnswers = list()  
 
 
-def SaveDataSettings(f,v,k,l):
+def SaveDataSettings(f,v,k,l):      #Saves settings to json file
     print("Saving Settings")
-    dictionary = {
+
+    dictionary = {      #uses settings to construct json file
         "FirstTime": f,
         "KeyValidity": v,
         "GeminiKey": k,
@@ -29,15 +30,11 @@ def SaveDataSettings(f,v,k,l):
 
     json_object = json.dumps(dictionary, indent=4)
  
-
-    with open("savedData.json", "w") as outfile:
+    with open("savedData.json", "w") as outfile:    #Saves settings to file
         outfile.write(json_object)
 
 
-
-
-
-try:
+try:        #tries to find settings file if doesnt find one, then it creates the file with default values
     f = open('savedData.json')
     data = json.load(f)
 except:
@@ -49,12 +46,12 @@ except:
 
 
 
-firstTime = data['FirstTime']
+firstTime = data['FirstTime']       #Saves global variables to the settings from the settings file
 VerifiedKey = data['KeyValidity']
 defaultLanguage = data['DefaultLang']
 geminikey = data['GeminiKey']
 
-if VerifiedKey == True:
+if VerifiedKey == True:     #Configures key for Gemini API if key was verified
     genai.configure(api_key=geminikey) #Configures Gemini API with API Key from environmnet variable
 
 
@@ -63,16 +60,12 @@ chat = model.start_chat(history=[]) #Begins conversation chat with gemini
 
 
 
-
-
-def setKey(key):
+def setKey(key):        #Takes in a key and saves key to settings structure
     global data
     data['GeminiKey'] = key
     print(data['GeminiKey'])
 
     genai.configure(api_key=key) #Configures Gemini API with API Key
-
-
 
 def validKey(): #Verifies api key is valid
     global VerifiedKey
@@ -127,9 +120,8 @@ def generateStory(g,l,d): #Generates the story given the corresponding topic, la
 
     return storyData
     ###End loading screen here
-
-        
-def BeginStory(*args):
+      
+def BeginStory(*args):      #Called to begin the story generation
 
     #Start loading screen here
 
@@ -137,7 +129,7 @@ def BeginStory(*args):
 
 def Difficulty(genre,language,diff):    #Defines how difficulty effects story generation
     if diff == 1:
-        return "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + defaultLanguage + " with answers and format it all in json"
+        return "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + defaultLanguage + " with answers and format it all in json and make sure all dialog uses single quotes only"
     elif diff == 2:
         return "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + language + " with answers and format the response like this:\n{Story}\n{Question1}\n{Question1Answer}\n{Question2}\n{Question2Answer}\n{Question3}\n{Question3Answer}\n{Question4}\n{Question4Answer}\n{Question5}\n{Question5Answer}"
     elif diff == 3:
@@ -165,10 +157,21 @@ def LanguageCode(lang):     #Converts language into lang code for text-to-speech
 
 def CheckAnswers(q1,q2,q3,q4,q5):   #Will be used to check if the answers are correct
     global storyData
-    AnswerResponse = "Are these answers similar to the answers you gave: " + q1 + "AND " + storyData['questions'][0]['answer'] + ";" + q2 + "AND " + storyData['questions'][1]['answer'] + ";"  + q3 + "AND " + storyData['questions'][2]['answer'] + ";"  + q4 + "AND " + storyData['questions'][3]['answer'] + ";"  + q5 + "AND " + storyData['questions'][4]['answer'] + ". Just say correct or wrong for each question and format it all in json."
-    print(chat.send_message(AnswerResponse).text)
+    AnswerResponse = "Are these answers similar to the answers you gave: " + q1 + "AND " + storyData['questions'][0]['answer'] + ";" + q2 + "AND " + storyData['questions'][1]['answer'] + ";"  + q3 + "AND " + storyData['questions'][2]['answer'] + ";"  + q4 + "AND " + storyData['questions'][3]['answer'] + ";"  + q5 + "AND " + storyData['questions'][4]['answer'] + ". Just say correct or wrong for each question and nothing else then format it all in json and label each element as answer"
+    
+    response = []
+    response = chat.send_message(AnswerResponse).text.splitlines()
+    answers = FormatGeminiJSON(response)
 
-def FormatGeminiJSON(response):
+    with open('AnswerResponse.json', 'w') as f:
+        for line in answers:
+            f.write(f"{line}\n")
+    
+    f.close()
+    return json.load(open('AnswerResponse.json'))
+
+
+def FormatGeminiJSON(response):     #Gets rid of text formatting from Gemini response 
     mResponse = list()
     for x in range(len(response)):
         if x == 0 or x == (len(response)-1):

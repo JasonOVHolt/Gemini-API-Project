@@ -9,7 +9,7 @@ from kivy.clock import Clock
 
 from gemini import *
 
-#Horizontal and Vertical Aspect ratio default to 16:9
+#Horizontal and Vertical Aspect ratio default to 9:16
 h_ratio = 450
 v_ratio = 800
 Window.size = (h_ratio, v_ratio)
@@ -20,7 +20,48 @@ class Manager(ScreenManager):
     response = list()
 
     def SubmitAnswers(*args):   #Checkanswers needs to return list of answers to define label text 
-        CheckAnswers(args[0].ids.Q1A.text,args[0].ids.Q2A.text,args[0].ids.Q3A.text,args[0].ids.Q4A.text,args[0].ids.Q5A.text)
+        answerData = CheckAnswers(args[0].ids.Q1A.text,args[0].ids.Q2A.text,args[0].ids.Q3A.text,args[0].ids.Q4A.text,args[0].ids.Q5A.text)
+        global response
+
+        args[0].ids.prompt_output2.text = args[0].ids.prompt_output.text
+        args[0].ids.Q1OriginalQuestion.text = response['questions'][0]['question']
+        args[0].ids.Q2OriginalQuestion.text = response['questions'][1]['question']
+        args[0].ids.Q3OriginalQuestion.text = response['questions'][2]['question']
+        args[0].ids.Q4OriginalQuestion.text = response['questions'][3]['question']
+        args[0].ids.Q5OriginalQuestion.text = response['questions'][4]['question']
+
+
+        args[0].ids.Q1OriginalAnswer.text = args[0].ids.Q1A.text
+        if answerData['answer1'] == "correct":
+            args[0].ids.Q1OriginalAnswer.text_color = "green"
+        else:
+            args[0].ids.Q1OriginalAnswer.text_color = "red"
+
+        args[0].ids.Q2OriginalAnswer.text = args[0].ids.Q2A.text
+        if answerData['answer2'] == "correct":
+            args[0].ids.Q2OriginalAnswer.text_color = "green"
+        else:
+            args[0].ids.Q2OriginalAnswer.text_color = "red"
+        
+        args[0].ids.Q3OriginalAnswer.text = args[0].ids.Q3A.text
+        if answerData['answer3'] == "correct":
+            args[0].ids.Q3OriginalAnswer.text_color = "green"
+        else:
+            args[0].ids.Q3OriginalAnswer.text_color = "red"
+
+        args[0].ids.Q4OriginalAnswer.text = args[0].ids.Q4A.text
+        if answerData['answer4'] == "correct":
+            args[0].ids.Q4OriginalAnswer.text_color = "green"
+        else:
+            args[0].ids.Q4OriginalAnswer.text_color = "red"
+
+        args[0].ids.Q5OriginalAnswer.text = args[0].ids.Q5A.text
+        if answerData['answer5'] == "correct":
+            args[0].ids.Q5OriginalAnswer.text_color = "green"
+        else:
+            args[0].ids.Q5OriginalAnswer.text_color = "red"
+
+
         sm.current = 'ResponseScreen'
     
     def PlayPrompt(*args):  #Called when play audio button is pressed
@@ -38,26 +79,27 @@ class Manager(ScreenManager):
         else:
             sm.current = 'SettingsScreen'
 
-    def CheckKey(*args):
+    def CheckKey(*args):        #Checks to see if given key is valid and shows validity
+
         setKey(args[0].ids.KeyText.text)
-        valid = validKey()
-        if valid:
+        valid = validKey()      #Sends a message to gemini to see if key is valid
+
+        if valid:       #Shows whether key is valid or not
             args[0].ids.KeyValidity.text_color_normal = "green"
             args[0].ids.KeyValidity.text = "Valid"
-            pass    #Change Text and color to say passed
+            pass    
         else:
             args[0].ids.KeyValidity.text_color_normal = "red"
             args[0].ids.KeyValidity.text = "NOT Valid"
-            pass    #Change Text and color to say failed
+            pass    
         pass
 
-    def ContinueSettings(*args):
+    def ContinueSettings(*args):        #Checks if the key given in the settings screen is valid before letting them continue
         global VerifiedKey
         if VerifiedKey:
             sm.current = 'GenreScreen'
         else:
             pass
-
 
     def Genre(*args):   #Called when a genre is selected
         global sm
@@ -97,6 +139,16 @@ class Manager(ScreenManager):
         sm.current = 'PromptScreen'     #Switches to the prompt screen
 
 
+    def BackToStart(*args):
+        args[0].ids.Q1A.text = ""
+        args[0].ids.Q2A.text = ""
+        args[0].ids.Q3A.text = ""
+        args[0].ids.Q4A.text = ""
+        args[0].ids.Q5A.text = ""
+
+
+        sm.current = "HomeScreen"
+
     pass
 
 
@@ -107,10 +159,8 @@ class PrototypeApp(MDApp):
         self.theme_cls.theme_style_switch_animation = True
         self.theme_cls.theme_style = "Dark"
 
-        kv = Builder.load_file("prototype2.kv")
+        kv = Builder.load_file("ui.kv")
 
-
-        ####################CHECK FOR KEY STATUS AND IF FIRST TIME
 
         return kv
 
