@@ -131,9 +131,9 @@ def Difficulty(genre,language,diff):    #Defines how difficulty effects story ge
     if diff == 1:
         return "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + defaultLanguage + " with answers and format it all in json and make sure all dialog uses single quotes only"
     elif diff == 2:
-        return "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + language + " with answers and format the response like this:\n{Story}\n{Question1}\n{Question1Answer}\n{Question2}\n{Question2Answer}\n{Question3}\n{Question3Answer}\n{Question4}\n{Question4Answer}\n{Question5}\n{Question5Answer}"
+        return "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + language + "  with answers and format it all in json and make sure all dialog uses single quotes only"
     elif diff == 3:
-        return "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + language + " with answers and format the response like this:\n{Story}\n{Question1}\n{Question1Answer}\n{Question2}\n{Question2Answer}\n{Question3}\n{Question3Answer}\n{Question4}\n{Question4Answer}\n{Question5}\n{Question5Answer}"
+        return "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + language + "  with answers and format it all in json and make sure all dialog uses single quotes only"
 
 def LanguageCode(lang):     #Converts language into lang code for text-to-speech generation
     if lang == "Spanish":
@@ -157,8 +157,12 @@ def LanguageCode(lang):     #Converts language into lang code for text-to-speech
 
 def CheckAnswers(q1,q2,q3,q4,q5):   #Will be used to check if the answers are correct
     global storyData
-    AnswerResponse = "Are these answers similar to the answers you gave: " + q1 + "AND " + storyData['questions'][0]['answer'] + ";" + q2 + "AND " + storyData['questions'][1]['answer'] + ";"  + q3 + "AND " + storyData['questions'][2]['answer'] + ";"  + q4 + "AND " + storyData['questions'][3]['answer'] + ";"  + q5 + "AND " + storyData['questions'][4]['answer'] + ". Just say correct or wrong for each question and nothing else then format it all in json and label each element as answer"
-    
+    global  PromptDifficulty
+    if PromptDifficulty != 3:
+        AnswerResponse = "Are these answers similar to the answers you gave: " + q1 + "AND " + storyData['questions'][0]['answer'] + ";" + q2 + "AND " + storyData['questions'][1]['answer'] + ";"  + q3 + "AND " + storyData['questions'][2]['answer'] + ";"  + q4 + "AND " + storyData['questions'][3]['answer'] + ";"  + q5 + "AND " + storyData['questions'][4]['answer'] + ". Just say correct or wrong for each question and nothing else then format it all in json and label each element as answer"
+    else:
+        AnswerResponse = "Are these answers similar to the answers you gave: " + q1 + "AND " + storyData['questions'][0]['answer'] + ";" + q2 + "AND " + storyData['questions'][1]['answer'] + ";"  + q3 + "AND " + storyData['questions'][2]['answer'] + ";"  + q4 + "AND " + storyData['questions'][3]['answer'] + ";"  + q5 + "AND " + storyData['questions'][4]['answer'] + ". Just say correct or wrong for each question and nothing else then format it all in json and label each element as answer. if the comparisons are in different languages then mark it wrong"
+
     response = []
     response = chat.send_message(AnswerResponse).text.splitlines()
     answers = FormatGeminiJSON(response)

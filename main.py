@@ -15,11 +15,16 @@ v_ratio = 800
 Window.size = (h_ratio, v_ratio)
 
 sm = ObjectProperty()
+audio = ObjectProperty()
+isAudioPlaying = False
+
+selectedTopic = ""
 
 class Manager(ScreenManager):
     response = list()
 
     def SubmitAnswers(*args):   #Checkanswers needs to return list of answers to define label text 
+        sm.transition.direction = "right"
         answerData = CheckAnswers(args[0].ids.Q1A.text,args[0].ids.Q2A.text,args[0].ids.Q3A.text,args[0].ids.Q4A.text,args[0].ids.Q5A.text)
         global response
 
@@ -65,14 +70,23 @@ class Manager(ScreenManager):
         sm.current = 'ResponseScreen'
     
     def PlayPrompt(*args):  #Called when play audio button is pressed
-        sound = SoundLoader.load("prompt.mp3")  #Loads Generated Text-to-speech
-        sound.play()    #Plays Audio clip
-        print("Audio Should be Playing")
+        global audio
+        global isAudioPlaying
+        if isAudioPlaying == False:
+            audio = SoundLoader.load("prompt.mp3")  #Loads Generated Text-to-speech
+            audio.play()    #Plays Audio clip
+            isAudioPlaying = True
+            print("Audio Should be Playing")
+        else:
+            audio.stop()
+            isAudioPlaying = False
+            print("Audio Should have Stopped")
 
     def Next(*args):    #Called when button on title screen is pressed
         global sm
+        
         sm = args[0]    #Assigns the screenmanager for later use
-
+        sm.transition.direction = "left"
         global firstTime
         if firstTime == False and VerifiedKey == True:
             sm.current = 'GenreScreen'  #Switches to genre screen
@@ -102,23 +116,33 @@ class Manager(ScreenManager):
             pass
 
     def Genre(*args):   #Called when a genre is selected
+        
         global sm
-        sm.current = args[1] + 'TopicScreen'    #Switches to selected topic screen
+        global selectedTopic
+        sm.transition.direction = "left"
+        selectedTopic = args[1] + 'TopicScreen'
+        sm.current = selectedTopic    #Switches to selected topic screen
 
     def Topic(*args):   #Called when topic is selected
+        
         global sm
+        sm.transition.direction = "left"
         global PromptGenre
         PromptGenre = args[1]   #Assigns selected topic to variable used for generating story
         sm.current = 'LanguageScreen'   #Switches to the language screen
 
     def Language(*args):    #Called when a language is selected
+        
         global sm
+        sm.transition.direction = "left"
         global PromptLanguage
         PromptLanguage = args[1]    #Assigns selected language to variable used for generating story
         sm.current = 'DifficultyScreen'     #Switches to the difficulty screen
 
     def Difficulty(*args):  #Called when a difficulty is selected
+        
         global sm
+        sm.transition.direction = "left"
         global PromptDifficulty
         PromptDifficulty = args[1]      #Assigns difficultly level to variable used for generating story
 
@@ -139,15 +163,30 @@ class Manager(ScreenManager):
         sm.current = 'PromptScreen'     #Switches to the prompt screen
 
 
-    def BackToStart(*args):
+    def BackToStart(*args):     #Resets Text fields and unload old audio file
+        global sm
+        sm.transition.direction = "right"
         args[0].ids.Q1A.text = ""
         args[0].ids.Q2A.text = ""
         args[0].ids.Q3A.text = ""
         args[0].ids.Q4A.text = ""
         args[0].ids.Q5A.text = ""
-
+        global audio
+        audio.unload()
 
         sm.current = "HomeScreen"
+
+
+    def BackTo(*args):
+        global sm
+        global selectedTopic
+        sm.transition.direction = "right"
+        if args[1] == "Topic":
+            sm.current = selectedTopic
+        else:
+            sm.current = args[1]
+        
+        pass
 
     pass
 

@@ -81,7 +81,6 @@ Manager:
             pos_hint: {'center_x': 0.5, 'center_y': 0.08}
             text_color: 'grey'
     
-
     MDScreen:   #GENRE
         id:GenreScreen
         name:'GenreScreen'
@@ -222,6 +221,13 @@ Manager:
             pos_hint: {'center_x': 0.5, 'center_y': 0.08}
             text_color: 'grey'
 
+        MDButton:
+            pos_hint: {'center_x': 0.1, 'center_y': 0.075}
+            on_release: root.BackTo("GenreScreen")
+
+            MDButtonIcon:
+                icon: 'chevron-left'
+
     MDScreen:   #SCIENCE FICTION TOPIC
         id:SFTopicScreen
         name:'SFTopicScreen'
@@ -291,6 +297,13 @@ Manager:
             halign: 'center'
             pos_hint: {'center_x': 0.5, 'center_y': 0.08}
             text_color: 'grey'
+
+        MDButton:
+            pos_hint: {'center_x': 0.1, 'center_y': 0.075}
+            on_release: root.BackTo("GenreScreen")
+
+            MDButtonIcon:
+                icon: 'chevron-left'
 
     MDScreen:   #HISTORY TOPIC
         id:HSTopicScreen
@@ -363,6 +376,14 @@ Manager:
             pos_hint: {'center_x': 0.5, 'center_y': 0.08}
             text_color: 'grey'
 
+
+        MDButton:
+            pos_hint: {'center_x': 0.1, 'center_y': 0.075}
+            on_release: root.BackTo("GenreScreen")
+
+            MDButtonIcon:
+                icon: 'chevron-left'
+
     MDScreen:   #FANTASY TOPIC
         id:FATopicScreen
         name:'FATopicScreen'
@@ -432,6 +453,14 @@ Manager:
             halign: 'center'
             pos_hint: {'center_x': 0.5, 'center_y': 0.08}
             text_color: 'grey'
+
+
+        MDButton:
+            pos_hint: {'center_x': 0.1, 'center_y': 0.075}
+            on_release: root.BackTo("GenreScreen")
+
+            MDButtonIcon:
+                icon: 'chevron-left'
 
     MDScreen:   #HORROR TOPIC
         id:HOTopicScreen
@@ -503,6 +532,14 @@ Manager:
             halign: 'center'
             pos_hint: {'center_x': 0.5, 'center_y': 0.08}
             text_color: 'grey'
+
+
+        MDButton:
+            pos_hint: {'center_x': 0.1, 'center_y': 0.075}
+            on_release: root.BackTo("GenreScreen")
+
+            MDButtonIcon:
+                icon: 'chevron-left'
 
     MDScreen:   #LANGUGAE
         id:LanguageScreen
@@ -613,6 +650,13 @@ Manager:
             halign: 'center'
             pos_hint: {'center_x': 0.5, 'center_y': 0.08}
             text_color: 'grey'
+
+        MDButton:
+            pos_hint: {'center_x': 0.1, 'center_y': 0.075}
+            on_release: root.BackTo("Topic")
+
+            MDButtonIcon:
+                icon: 'chevron-left'
     
     MDScreen:   #DIFFICULTY
         id:DifficultyScreen
@@ -663,6 +707,13 @@ Manager:
             halign: 'center'
             pos_hint: {'center_x': 0.5, 'center_y': 0.08}
             text_color: 'grey'
+
+        MDButton:
+            pos_hint: {'center_x': 0.1, 'center_y': 0.075}
+            on_release: root.BackTo("LanguageScreen")
+
+            MDButtonIcon:
+                icon: 'chevron-left'
 
     MDScreen:   #PROMPT
         id:PromptScreen
