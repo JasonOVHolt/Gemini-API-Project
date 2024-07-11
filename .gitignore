@@ -8,6 +8,7 @@ __pycache__/
 
 .buildozer/
 bin/
+.idea/
 
 # Distribution / packaging
 .Python
