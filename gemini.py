@@ -107,16 +107,17 @@ def generateStory(g,l,d): #Generates the story given the corresponding topic, la
     mKeyword = list(filter(None,keyword))
     
     mResponse = FormatGeminiJSON(mKeyword)
-    with open('CurrentStory.json', 'w') as f:
+    with open('CurrentStory.json', 'w', encoding='utf-8') as f:
         for line in mResponse:
             f.write(f"{line}\n")
     f.close()
-    myobj = gTTS(text=mResponse[0], lang=language, slow=False, lang_check= False) #Creates text-to-speech with prompt and language code
-    myobj.save("prompt.mp3") #Saves text-to-speech file
 
     global storyData
-    f = open('CurrentStory.json')
+    f = open('CurrentStory.json', encoding='utf-8')
     storyData = json.load(f)
+
+    myobj = gTTS(text=storyData['story'], lang=language, slow=False, lang_check= False) #Creates text-to-speech with prompt and language code
+    myobj.save("prompt.mp3") #Saves text-to-speech file
 
     return storyData
     ###End loading screen here
@@ -167,7 +168,7 @@ def CheckAnswers(q1,q2,q3,q4,q5):   #Will be used to check if the answers are co
     response = chat.send_message(AnswerResponse).text.splitlines()
     answers = FormatGeminiJSON(response)
 
-    with open('AnswerResponse.json', 'w') as f:
+    with open('AnswerResponse.json', 'w', encoding='utf-8') as f:
         for line in answers:
             f.write(f"{line}\n")
     

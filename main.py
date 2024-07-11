@@ -198,7 +198,8 @@ class PrototypeApp(MDApp):
         self.theme_cls.theme_style_switch_animation = True
         self.theme_cls.theme_style = "Dark"
 
-        kv = Builder.load_file("ui.kv")
+        with open("ui.kv", encoding='utf-8') as f:
+            kv = Builder.load_string(f.read())
 
 
         return kv
