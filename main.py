@@ -24,6 +24,8 @@ class Manager(ScreenManager):
     response = list()
 
     def SubmitAnswers(*args):   #Checkanswers needs to return list of answers to define label text 
+        global audio
+        audio.stop()
         sm.transition.direction = "right"
         answerData = CheckAnswers(args[0].ids.Q1A.text,args[0].ids.Q2A.text,args[0].ids.Q3A.text,args[0].ids.Q4A.text,args[0].ids.Q5A.text)
         global response
@@ -72,6 +74,12 @@ class Manager(ScreenManager):
     def PlayPrompt(*args):  #Called when play audio button is pressed
         global audio
         global isAudioPlaying
+        try:
+            if audio.state == "stop":
+                isAudioPlaying = False
+        except:
+            pass
+
         if isAudioPlaying == False:
             audio = SoundLoader.load("prompt.mp3")  #Loads Generated Text-to-speech
             audio.play()    #Plays Audio clip
