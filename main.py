@@ -6,6 +6,7 @@ from kivy.core.window import Window
 from kivy.properties import ObjectProperty
 from kivy.core.audio import SoundLoader
 from kivy.clock import Clock
+from kivymd.uix.card import MDCard
 
 from gemini import *
 
