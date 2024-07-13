@@ -1,12 +1,9 @@
 from kivymd.app import MDApp
-from kivy.uix.screenmanager import Screen
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
 from kivy.core.window import Window
 from kivy.properties import ObjectProperty
 from kivy.core.audio import SoundLoader
-from kivy.clock import Clock
-from kivymd.uix.card import MDCard
 
 from gemini import *
 
@@ -158,7 +155,16 @@ class Manager(ScreenManager):
         print("Genre: " + PromptGenre + ", Language: " + PromptLanguage + ", Difficulty: " + str(PromptDifficulty))
 
         global response
-        response = generateStory(PromptGenre,PromptLanguage,PromptDifficulty)   #Generates the story with the criteria and assigns to an array
+        sm.ids.loading_gif._coreimage.anim_reset(True)
+        sm.current = 'LoadingScreen'
+        print("REE")
+        t1 = CustomThread(target=generateStory,args=(PromptGenre,PromptLanguage,PromptDifficulty))
+    
+        t1.start()
+
+        response = t1.join()
+
+        #response = BeginStory(PromptGenre,PromptLanguage,PromptDifficulty,sm)   #Generates the story with the criteria and assigns to an array
 
 
         args[0].ids.prompt_output.text = response['story']    #Outputs story to screen label

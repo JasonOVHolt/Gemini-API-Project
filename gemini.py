@@ -1,7 +1,7 @@
-import os
 import google.generativeai as genai
 from gtts import gTTS
 import json
+from threading import Thread
 
 
 PromptGenre = "Road Trip"
@@ -18,6 +18,19 @@ storyData = ""
 currentAnswers = list()  
 
 
+class CustomThread(Thread):
+    def __init__(self,group=None, target=None, name=None, args=(),kwargs={},Verbose=None):
+        Thread.__init__(self,group,target,name,args,kwargs)
+        self._return = None
+
+    def run(self):
+        if self._target is not None:
+            self._return = self._target(*self._args, **self._kwargs)
+
+    def join(self):
+        Thread.join(self)
+        return self._return
+
 def SaveDataSettings(f,v,k,l):      #Saves settings to json file
     print("Saving Settings")
 
@@ -33,7 +46,6 @@ def SaveDataSettings(f,v,k,l):      #Saves settings to json file
     with open("savedData.json", "w") as outfile:    #Saves settings to file
         outfile.write(json_object)
 
-
 try:        #tries to find settings file if doesnt find one, then it creates the file with default values
     f = open('savedData.json')
     data = json.load(f)
@@ -43,9 +55,6 @@ except:
     data = json.load(f)
     pass
 
-
-
-
 firstTime = data['FirstTime']       #Saves global variables to the settings from the settings file
 VerifiedKey = data['KeyValidity']
 defaultLanguage = data['DefaultLang']
@@ -54,11 +63,8 @@ geminikey = data['GeminiKey']
 if VerifiedKey == True:     #Configures key for Gemini API if key was verified
     genai.configure(api_key=geminikey) #Configures Gemini API with API Key from environmnet variable
 
-
 model = genai.GenerativeModel('gemini-1.5-pro') #Selects Gemini Model
 chat = model.start_chat(history=[]) #Begins conversation chat with gemini
-
-
 
 def setKey(key):        #Takes in a key and saves key to settings structure
     global data
@@ -120,13 +126,25 @@ def generateStory(g,l,d): #Generates the story given the corresponding topic, la
     myobj.save("prompt.mp3") #Saves text-to-speech file
 
     return storyData
-    ###End loading screen here
-      
-def BeginStory(*args):      #Called to begin the story generation
+    
 
+def BeginStory(g,l,d,m):      #Called to begin the story generation
+    
     #Start loading screen here
+    
 
-    generateStory(PromptGenre,PromptLanguage,PromptDifficulty) #Generates story with the genre and language and eventually difficulty 
+    t1 = CustomThread(target=generateStory,args=(PromptGenre,PromptLanguage,PromptDifficulty))
+    
+
+
+    t1.start()
+    
+
+    response = t1.join()
+
+
+    return response
+     
 
 def Difficulty(genre,language,diff):    #Defines how difficulty effects story generation
     if diff == 1:
