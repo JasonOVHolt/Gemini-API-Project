@@ -1,9 +1,10 @@
 from kivymd.app import MDApp
 from kivy.lang import Builder
-from kivy.uix.screenmanager import ScreenManager
+from kivymd.uix.screenmanager import MDScreenManager
 from kivy.core.window import Window
 from kivy.properties import ObjectProperty
 from kivy.core.audio import SoundLoader
+from kivy.core.text import LabelBase, DEFAULT_FONT
 
 from gemini import *
 
@@ -18,7 +19,7 @@ isAudioPlaying = False
 
 selectedTopic = ""
 
-class Manager(ScreenManager):
+class Manager(MDScreenManager):
     response = list()
 
     def SubmitAnswers(*args):   #Checkanswers needs to return list of answers to define label text 
@@ -158,22 +159,22 @@ class Manager(ScreenManager):
         sm.ids.loading_gif._coreimage.anim_reset(True)
         sm.current = 'LoadingScreen'
         print("REE")
-        t1 = CustomThread(target=generateStory,args=(PromptGenre,PromptLanguage,PromptDifficulty))
+        t1 = CustomThread(target=generateStory,args=(PromptGenre,PromptLanguage,PromptDifficulty,sm))
     
         t1.start()
 
-        response = t1.join()
+        t1.join()
 
         #response = BeginStory(PromptGenre,PromptLanguage,PromptDifficulty,sm)   #Generates the story with the criteria and assigns to an array
 
 
-        args[0].ids.prompt_output.text = response['story']    #Outputs story to screen label
+        #args[0].ids.prompt_output.text = response['story']    #Outputs story to screen label
 
-        args[0].ids.question_output1.text = response['questions'][0]['question']     #Outputs questions to screen labels
-        args[0].ids.question_output2.text = response['questions'][1]['question']
-        args[0].ids.question_output3.text = response['questions'][2]['question']
-        args[0].ids.question_output4.text = response['questions'][3]['question']
-        args[0].ids.question_output5.text = response['questions'][4]['question']
+        #args[0].ids.question_output1.text = response['questions'][0]['question']     #Outputs questions to screen labels
+        #args[0].ids.question_output2.text = response['questions'][1]['question']
+        #args[0].ids.question_output3.text = response['questions'][2]['question']
+        #args[0].ids.question_output4.text = response['questions'][3]['question']
+        #args[0].ids.question_output5.text = response['questions'][4]['question']
 
         sm.current = 'PromptScreen'     #Switches to the prompt screen
 
@@ -216,8 +217,11 @@ class PrototypeApp(MDApp):
         with open("ui.kv", encoding='utf-8') as f:
             kv = Builder.load_string(f.read())
 
+        LabelBase.register(name='Code2000', fn_regular='Code2000.ttf')
+        LabelBase.register(DEFAULT_FONT, fn_regular='Code2000.ttf')
 
         return kv
+
 
 
 

@@ -88,7 +88,7 @@ def validKey(): #Verifies api key is valid
     SaveDataSettings(firstTime,VerifiedKey,data['GeminiKey'],defaultLanguage)
     return True
 
-def generateStory(g,l,d): #Generates the story given the corresponding topic, language and difficulty
+def generateStory(g,l,d,m): #Generates the story given the corresponding topic, language and difficulty
     PromptGenre = g
     PromptLanguage = l
     PromptDifficulty = d
@@ -125,7 +125,19 @@ def generateStory(g,l,d): #Generates the story given the corresponding topic, la
     myobj = gTTS(text=storyData['story'], lang=language, slow=False, lang_check= False) #Creates text-to-speech with prompt and language code
     myobj.save("prompt.mp3") #Saves text-to-speech file
 
-    return storyData
+
+
+    m.ids.prompt_output.text = storyData['story']    #Outputs story to screen label
+
+    m.ids.question_output1.text = storyData['questions'][0]['question']     #Outputs questions to screen labels
+    m.ids.question_output2.text = storyData['questions'][1]['question']
+    m.ids.question_output3.text = storyData['questions'][2]['question']
+    m.ids.question_output4.text = storyData['questions'][3]['question']
+    m.ids.question_output5.text = storyData['questions'][4]['question']
+
+    #m.current = "PromptScreen"
+
+
     
 
 def BeginStory(g,l,d,m):      #Called to begin the story generation
