@@ -2,7 +2,7 @@ import google.generativeai as genai
 from gtts import gTTS
 import json
 from threading import Thread
-
+from kivy.clock import mainthread
 
 PromptGenre = "Road Trip"
 PromptLanguage = "Spanish"
@@ -134,8 +134,11 @@ def generateStory(g,l,d,m): #Generates the story given the corresponding topic, 
     m.ids.question_output3.text = storyData['questions'][2]['question']
     m.ids.question_output4.text = storyData['questions'][3]['question']
     m.ids.question_output5.text = storyData['questions'][4]['question']
+    ChangeToPrompt(m)
 
-    #m.current = "PromptScreen"
+@mainthread
+def ChangeToPrompt(sm):
+    sm.current = "PromptScreen"
 
 
     

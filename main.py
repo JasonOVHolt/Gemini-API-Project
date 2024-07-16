@@ -2,7 +2,7 @@ from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivymd.uix.screenmanager import MDScreenManager
 from kivy.core.window import Window
-from kivy.properties import ObjectProperty
+from kivy.properties import ObjectProperty, BooleanProperty
 from kivy.core.audio import SoundLoader
 from kivy.core.text import LabelBase, DEFAULT_FONT
 
@@ -15,12 +15,18 @@ Window.size = (h_ratio, v_ratio)
 
 sm = ObjectProperty()
 audio = ObjectProperty()
+
 isAudioPlaying = False
 
 selectedTopic = ""
 
+t1 = CustomThread()
+
+
+
 class Manager(MDScreenManager):
     response = list()
+    
 
     def SubmitAnswers(*args):   #Checkanswers needs to return list of answers to define label text 
         global audio
@@ -158,25 +164,13 @@ class Manager(MDScreenManager):
         global response
         sm.ids.loading_gif._coreimage.anim_reset(True)
         sm.current = 'LoadingScreen'
-        print("REE")
+        global t1
+        TTSGenerated = BooleanProperty(defaultvalue=False)
         t1 = CustomThread(target=generateStory,args=(PromptGenre,PromptLanguage,PromptDifficulty,sm))
-    
         t1.start()
 
-        t1.join()
+        #t1.join()
 
-        #response = BeginStory(PromptGenre,PromptLanguage,PromptDifficulty,sm)   #Generates the story with the criteria and assigns to an array
-
-
-        #args[0].ids.prompt_output.text = response['story']    #Outputs story to screen label
-
-        #args[0].ids.question_output1.text = response['questions'][0]['question']     #Outputs questions to screen labels
-        #args[0].ids.question_output2.text = response['questions'][1]['question']
-        #args[0].ids.question_output3.text = response['questions'][2]['question']
-        #args[0].ids.question_output4.text = response['questions'][3]['question']
-        #args[0].ids.question_output5.text = response['questions'][4]['question']
-
-        sm.current = 'PromptScreen'     #Switches to the prompt screen
 
 
     def BackToStart(*args):     #Resets Text fields and unload old audio file
