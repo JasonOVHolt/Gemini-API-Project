@@ -169,7 +169,6 @@ class Manager(MDScreenManager):
         t1 = CustomThread(target=generateStory,args=(PromptGenre,PromptLanguage,PromptDifficulty,sm))
         t1.start()
 
-        #Rees' actual code contribution (RARE!!!)
         if PromptDifficulty == 1:
             diff = "easy"
         if PromptDifficulty == 2:

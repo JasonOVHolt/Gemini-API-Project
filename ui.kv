@@ -11,7 +11,7 @@ Manager:
         
         MDDivider: #Horizontal Divider
             size_hint_x: 1
-            pos_hint: {'center_x': .5, 'center_y': .74}
+            pos_hint: {'center_x': .5, 'center_y': .76}
             color: '#1b1b1b'
 
         MDButton:
@@ -42,7 +42,7 @@ Manager:
         
         MDDivider: #Horizontal Divider
             size_hint_x: 1
-            pos_hint: {'center_x': .5, 'center_y': .74}
+            pos_hint: {'center_x': .5, 'center_y': .76}
             color: '#1b1b1b'
 
         MDTextField:
@@ -93,7 +93,7 @@ Manager:
 
         MDDivider: #Horizontal Divider
             size_hint_x: 1
-            pos_hint: {'center_x': .5, 'center_y': .74}
+            pos_hint: {'center_x': .5, 'center_y': .76}
             color: '#1b1b1b'
 
         MDButton:
@@ -163,7 +163,7 @@ Manager:
 
         MDDivider: #Horizontal Divider
             size_hint_x: 1
-            pos_hint: {'center_x': .5, 'center_y': .74}
+            pos_hint: {'center_x': .5, 'center_y': .76}
             color: '#1b1b1b'
 
         MDButton:
@@ -223,11 +223,14 @@ Manager:
             text_color: 'grey'
 
         MDButton:
-            pos_hint: {'center_x': 0.1, 'center_y': 0.075}
+            pos_hint: {'center_x': 0.18, 'center_y': 0.075}
             on_release: root.BackTo("GenreScreen")
 
             MDButtonIcon:
                 icon: 'chevron-left'
+
+            MDButtonText:
+                text: 'Back'
 
     MDScreen:   #SCIENCE FICTION TOPIC
         id:SFTopicScreen
@@ -240,7 +243,7 @@ Manager:
 
         MDDivider: #Horizontal Divider
             size_hint_x: 1
-            pos_hint: {'center_x': .5, 'center_y': .74}
+            pos_hint: {'center_x': .5, 'center_y': .76}
             color: '#1b1b1b'
 
         MDButton:
@@ -300,11 +303,14 @@ Manager:
             text_color: 'grey'
 
         MDButton:
-            pos_hint: {'center_x': 0.1, 'center_y': 0.075}
+            pos_hint: {'center_x': 0.15, 'center_y': 0.075}
             on_release: root.BackTo("GenreScreen")
 
             MDButtonIcon:
                 icon: 'chevron-left'
+
+            MDButtonText:
+                text: 'Back'
 
     MDScreen:   #HISTORY TOPIC
         id:HSTopicScreen
@@ -317,7 +323,7 @@ Manager:
 
         MDDivider: #Horizontal Divider
             size_hint_x: 1
-            pos_hint: {'center_x': .5, 'center_y': .74}
+            pos_hint: {'center_x': .5, 'center_y': .76}
             color: '#1b1b1b'
 
         MDButton:
@@ -379,11 +385,14 @@ Manager:
 
 
         MDButton:
-            pos_hint: {'center_x': 0.1, 'center_y': 0.075}
+            pos_hint: {'center_x': 0.15, 'center_y': 0.075}
             on_release: root.BackTo("GenreScreen")
 
             MDButtonIcon:
                 icon: 'chevron-left'
+            
+            MDButtonText:
+                text: 'Back'
 
     MDScreen:   #FANTASY TOPIC
         id:FATopicScreen
@@ -396,7 +405,7 @@ Manager:
 
         MDDivider: #Horizontal Divider
             size_hint_x: 1
-            pos_hint: {'center_x': .5, 'center_y': .74}
+            pos_hint: {'center_x': .5, 'center_y': .76}
             color: '#1b1b1b'
 
         MDButton:
@@ -450,18 +459,21 @@ Manager:
                 text: 'Brand New World'
 
         MDLabel:
-            text: 'Historical Stories'
+            text: 'Fantasy Stories'
             halign: 'center'
             pos_hint: {'center_x': 0.5, 'center_y': 0.08}
             text_color: 'grey'
 
 
         MDButton:
-            pos_hint: {'center_x': 0.1, 'center_y': 0.075}
+            pos_hint: {'center_x': 0.15, 'center_y': 0.075}
             on_release: root.BackTo("GenreScreen")
 
             MDButtonIcon:
                 icon: 'chevron-left'
+
+            MDButtonText:
+                text: 'Back'
 
     MDScreen:   #HORROR TOPIC
         id:HOTopicScreen
@@ -474,7 +486,7 @@ Manager:
 
         MDDivider: #Horizontal Divider
             size_hint_x: 1
-            pos_hint: {'center_x': .5, 'center_y': .74}
+            pos_hint: {'center_x': .5, 'center_y': .76}
             color: '#1b1b1b'
 
         MDButton:
@@ -529,18 +541,21 @@ Manager:
 
 
         MDLabel:
-            text: 'Historical Stories'
+            text: 'Horror Stories'
             halign: 'center'
             pos_hint: {'center_x': 0.5, 'center_y': 0.08}
             text_color: 'grey'
 
 
         MDButton:
-            pos_hint: {'center_x': 0.1, 'center_y': 0.075}
+            pos_hint: {'center_x': 0.15, 'center_y': 0.075}
             on_release: root.BackTo("GenreScreen")
 
             MDButtonIcon:
                 icon: 'chevron-left'
+
+            MDButtonText:
+                text: 'Back'
 
     MDScreen:   #LANGUGAE
         id:LanguageScreen
@@ -553,7 +568,7 @@ Manager:
 
         MDDivider: #Horizontal Divider
             size_hint_x: 1
-            pos_hint: {'center_x': .5, 'center_y': .74}
+            pos_hint: {'center_x': .5, 'center_y': .76}
             color: '#1b1b1b'
 
 
@@ -653,11 +668,14 @@ Manager:
             text_color: 'grey'
 
         MDButton:
-            pos_hint: {'center_x': 0.1, 'center_y': 0.075}
+            pos_hint: {'center_x': 0.15, 'center_y': 0.075}
             on_release: root.BackTo("Topic")
 
             MDButtonIcon:
                 icon: 'chevron-left'
+
+            MDButtonText:
+                text: 'Back'
     
     MDScreen:   #DIFFICULTY
         id:DifficultyScreen
@@ -670,7 +688,7 @@ Manager:
 
         MDDivider: #Horizontal Divider
             size_hint_x: 1
-            pos_hint: {'center_x': .5, 'center_y': .74}
+            pos_hint: {'center_x': .5, 'center_y': .76}
             color: '#1b1b1b'
 
         MDCard:
@@ -770,11 +788,14 @@ Manager:
             text_color: 'grey'
 
         MDButton:
-            pos_hint: {'center_x': 0.1, 'center_y': 0.075}
+            pos_hint: {'center_x': 0.15, 'center_y': 0.075}
             on_release: root.BackTo("LanguageScreen")
 
             MDButtonIcon:
                 icon: 'chevron-left'
+
+            MDButtonText:
+                text: 'Back'
 
     MDScreen:   #PROMPT
         id:PromptScreen
@@ -901,11 +922,14 @@ Manager:
                 text: 'Play Audio'
 
         MDButton:
-            pos_hint: {'center_x': 0.1, 'center_y': 0.075}
+            pos_hint: {'center_x': 0.15, 'center_y': 0.075}
             on_release: root.SubmitAnswers()
 
             MDButtonIcon:
                 icon: 'chevron-right'
+
+            MDButtonText:
+                text: 'Back'
 
     MDScreen:   #RESPONSE
         id:ResponseScreen
@@ -919,10 +943,10 @@ Manager:
             text_color: '#6183e2'
             size_hint_x: 0.95
 
-        MDDivider: #Horizontal Divider
-            size_hint_x: 1
-            pos_hint: {'center_x': .5, 'center_y': 0.6}
-            color: '#1b1b1b'
+        # MDDivider: #Horizontal Divider
+        #     size_hint_x: 1
+        #     pos_hint: {'center_x': .5, 'center_y': 0.6}
+        #     color: '#1b1b1b'
 
         MDBoxLayout:
             id: main_scroll
@@ -1048,11 +1072,14 @@ Manager:
                     pos_hint: {"center_x": 0.5, "center_y": 0.5}
 
         MDButton:
-            pos_hint: {'center_x': 0.1, 'center_y': 0.075}
+            pos_hint: {'center_x': 0.15, 'center_y': 0.075}
             on_release: root.BackToStart()
 
             MDButtonIcon:
                 icon: 'chevron-right'
+
+            MDButtonText:
+                text: 'Back'
 
     MDScreen:   #LOADING
         id:LoadingScreen
