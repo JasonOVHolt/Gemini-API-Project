@@ -30,17 +30,20 @@ class Manager(MDScreenManager):
 
     def SubmitAnswers(*args):   #Checkanswers needs to return list of answers to define label text 
         global audio
-        audio.stop()
+        try:
+            audio.stop()
+        except:
+            pass
         sm.transition.direction = "right"
         answerData = CheckAnswers(args[0].ids.Q1A.text,args[0].ids.Q2A.text,args[0].ids.Q3A.text,args[0].ids.Q4A.text,args[0].ids.Q5A.text)
-        global response
+
 
         args[0].ids.prompt_output2.text = args[0].ids.prompt_output.text
-        args[0].ids.Q1OriginalQuestion.text = response['questions'][0]['question']
-        args[0].ids.Q2OriginalQuestion.text = response['questions'][1]['question']
-        args[0].ids.Q3OriginalQuestion.text = response['questions'][2]['question']
-        args[0].ids.Q4OriginalQuestion.text = response['questions'][3]['question']
-        args[0].ids.Q5OriginalQuestion.text = response['questions'][4]['question']
+        args[0].ids.Q1OriginalQuestion.text = storyData['questions'][0]['question']
+        args[0].ids.Q2OriginalQuestion.text = storyData['questions'][1]['question']
+        args[0].ids.Q3OriginalQuestion.text = storyData['questions'][2]['question']
+        args[0].ids.Q4OriginalQuestion.text = storyData['questions'][3]['question']
+        args[0].ids.Q5OriginalQuestion.text = storyData['questions'][4]['question']
 
 
         args[0].ids.Q1OriginalAnswer.text = args[0].ids.Q1A.text
