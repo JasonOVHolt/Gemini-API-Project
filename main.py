@@ -169,6 +169,16 @@ class Manager(MDScreenManager):
         t1 = CustomThread(target=generateStory,args=(PromptGenre,PromptLanguage,PromptDifficulty,sm))
         t1.start()
 
+        #Rees' actual code contribution (RARE!!!)
+        if PromptDifficulty == 1:
+            diff = "easy"
+        if PromptDifficulty == 2:
+            diff = "medium"
+        if PromptDifficulty == 3:
+            diff = "hard"
+
+        sm.ids.GenerationID.text = "Now generating a story about " + PromptGenre + " in the " + PromptLanguage + " language with a difficulty of " + diff + "..."
+
         #t1.join()
 
 
