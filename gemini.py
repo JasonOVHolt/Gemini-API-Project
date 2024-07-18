@@ -163,11 +163,11 @@ def BeginStory(g,l,d,m):      #Called to begin the story generation
 
 def Difficulty(genre,language,diff):    #Defines how difficulty effects story generation
     if diff == 1:
-        return "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + defaultLanguage + " with answers and format it all in json and make sure all dialog uses single quotes only"
+        return "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + defaultLanguage + " with answers and format it all in json and make sure all dialog uses single quotes only and each string element should use double quotes only"
     elif diff == 2:
-        return "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + language + "  with answers and format it all in json and make sure all dialog uses single quotes only"
+        return "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + language + "  with answers and format it all in json and make sure all dialog uses single quotes only and each string element should use double quotes only"
     elif diff == 3:
-        return "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + language + "  with answers and format it all in json and make sure all dialog uses single quotes only"
+        return "Generate a short 6 sentence story about a " + genre + " in " + language + "then generate 5 questions about the story in " + language + "  with answers and format it all in json and make sure all dialog uses single quotes only and each string element should use double quotes only"
 
 def LanguageCode(lang):     #Converts language into lang code for text-to-speech generation
     if lang == "Spanish":
