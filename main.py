@@ -37,13 +37,15 @@ class Manager(MDScreenManager):
         sm.transition.direction = "right"
         answerData = CheckAnswers(args[0].ids.Q1A.text,args[0].ids.Q2A.text,args[0].ids.Q3A.text,args[0].ids.Q4A.text,args[0].ids.Q5A.text)
 
-
+        global storyData
+        f = open('CurrentStory.json', encoding='utf-8')
+        story = json.load(f)
         args[0].ids.prompt_output2.text = args[0].ids.prompt_output.text
-        args[0].ids.Q1OriginalQuestion.text = storyData['questions'][0]['question']
-        args[0].ids.Q2OriginalQuestion.text = storyData['questions'][1]['question']
-        args[0].ids.Q3OriginalQuestion.text = storyData['questions'][2]['question']
-        args[0].ids.Q4OriginalQuestion.text = storyData['questions'][3]['question']
-        args[0].ids.Q5OriginalQuestion.text = storyData['questions'][4]['question']
+        args[0].ids.Q1OriginalQuestion.text = story['questions'][0]['question']
+        args[0].ids.Q2OriginalQuestion.text = story['questions'][1]['question']
+        args[0].ids.Q3OriginalQuestion.text = story['questions'][2]['question']
+        args[0].ids.Q4OriginalQuestion.text = story['questions'][3]['question']
+        args[0].ids.Q5OriginalQuestion.text = story['questions'][4]['question']
 
 
         args[0].ids.Q1OriginalAnswer.text = args[0].ids.Q1A.text
