@@ -810,11 +810,6 @@ Manager:
             text_color: '#6183e2'
             size_hint_x: 0.95
 
-        MDDivider: #Horizontal Divider
-            size_hint_x: 1
-            pos_hint: {'center_x': .5, 'center_y': 0.6}
-            color: '#1b1b1b'
-
         MDBoxLayout:
             id: main_scroll
             orientation: "vertical"
@@ -912,7 +907,7 @@ Manager:
 
 
         MDButton:
-            pos_hint: {'center_x': 0.5, 'center_y': 0.05}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.11}
             on_release: root.PlayPrompt()
 
             MDButtonIcon:
@@ -922,14 +917,14 @@ Manager:
                 text: 'Play Audio'
 
         MDButton:
-            pos_hint: {'center_x': 0.15, 'center_y': 0.075}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.04}
             on_release: root.SubmitAnswers()
 
             MDButtonIcon:
-                icon: 'chevron-right'
+                icon: 'check-bold'
 
             MDButtonText:
-                text: 'Continue'
+                text: 'Submit'
 
     MDScreen:   #RESPONSE
         id:ResponseScreen
