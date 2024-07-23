@@ -94,10 +94,14 @@ class Manager(MDScreenManager):
             audio = SoundLoader.load("prompt.mp3")  #Loads Generated Text-to-speech
             audio.play()    #Plays Audio clip
             isAudioPlaying = True
+            sm.ids.audioicon.icon = 'pause'
+            sm.ids.audiotext.text = 'Pause Audio'
             print("Audio Should be Playing")
         else:
             audio.stop()
             isAudioPlaying = False
+            sm.ids.audioicon.icon = 'play'
+            sm.ids.audiotext.text = 'Play Audio'
             print("Audio Should have Stopped")
 
     def Next(*args):    #Called when button on title screen is pressed
