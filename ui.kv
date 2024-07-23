@@ -25,6 +25,14 @@ Manager:
                 text: 'Begin' 
                 font_name: 'Code2000'
 
+        MDFabButton:
+            pos_hint: {'center_x': 0.08, 'center_y': 0.95}
+            on_release: root.GoToSettings()
+            icon: 'cog'
+            style: 'small'
+            
+
+
         MDLabel:
             text: 'Home Screen'
             halign: 'center'
@@ -49,7 +57,7 @@ Manager:
             id: KeyText
             size_hint: .6, .3
             mode: "outlined"
-            pos_hint: {'center_x': .375, 'center_y': .5}
+            pos_hint: {'center_x': .375, 'center_y': .65}
 
             MDTextFieldHintText:
                 text: "Gemini API Key"
@@ -63,13 +71,24 @@ Manager:
             MDTextFieldMaxLengthText:
                 max_text_length: 40
 
-        MDIconButton:
-            pos_hint: {'center_x': 0.8, 'center_y': 0.5}
+        MDFabButton:
+            pos_hint: {'center_x': 0.8, 'center_y': 0.65}
             icon: "check-bold"
             on_release: root.CheckKey()
-                
+
+        MDLabel:
+            pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+            text: 'To get your API Key, go to [ref=https://ai.google.dev/aistudio][color=0000EE][u]https://ai.google.dev/aistudio[/u][/color][/ref] and sign in to your google account. Then select "Get API Key". Once you create the API Key, copy your key and paste it into the text-field and select the checkmark to verify key.'
+            markup: True
+            halign: 'center'
+            text_color: 'grey'
+            on_ref_press:
+                import webbrowser
+                webbrowser.open(args[1])
+
+
         MDButton:
-            pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+            pos_hint: {'center_x': 0.5, 'center_y': 0.25}
             on_release: root.ContinueSettings()
             
             MDButtonText:
@@ -1094,3 +1113,33 @@ Manager:
             center: self.parent.center
             size: 300,300
             anim_loop: 100
+
+    MDScreen:   #ERROR
+        id:ErrorScreen
+        name:'ErrorScreen'
+
+        MDLabel:
+            text: 'AN ERROR HAS OCCURED CONTACTING THE GEMINI SERVICES'
+            size_hint_x: 0.9
+            halign: 'center'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+
+        MDLabel:
+            text: 'This may due to reaching daily free maximum API requests, poor or no internet signal, or problems with current google services.'
+            size_hint_x: 0.8
+            halign: 'center'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+            text_color: 'grey'
+
+        MDButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.2}
+            on_release: root.BackToStart()
+
+            MDButtonIcon:
+                icon: 'chevron-right'
+
+            MDButtonText:
+                text: 'Back'
+
+
+

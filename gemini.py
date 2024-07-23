@@ -100,7 +100,13 @@ def generateStory(g,l,d,m): #Generates the story given the corresponding topic, 
 
     
     chat
-    gemini_response = chat.send_message(prompt).text #Sends prompt to Gemini
+
+    try:
+        gemini_response = chat.send_message(prompt).text #Sends prompt to Gemini
+    except:
+        ChangeToError(m)
+        return
+    
     print(gemini_response)
 
         
@@ -140,25 +146,10 @@ def generateStory(g,l,d,m): #Generates the story given the corresponding topic, 
 def ChangeToPrompt(sm):
     sm.current = "PromptScreen"
 
+@mainthread
+def ChangeToError(sm):
+    sm.current = "ErrorScreen"
 
-    
-
-def BeginStory(g,l,d,m):      #Called to begin the story generation
-    
-    #Start loading screen here
-    
-
-    t1 = CustomThread(target=generateStory,args=(PromptGenre,PromptLanguage,PromptDifficulty))
-    
-
-
-    t1.start()
-    
-
-    response = t1.join()
-
-
-    return response
      
 
 def Difficulty(genre,language,diff):    #Defines how difficulty effects story generation
@@ -189,7 +180,7 @@ def LanguageCode(lang):     #Converts language into lang code for text-to-speech
     
     return x
 
-def CheckAnswers(q1,q2,q3,q4,q5):   #Will be used to check if the answers are correct
+def CheckAnswers(q1,q2,q3,q4,q5,m):   #Will be used to check if the answers are correct
     global storyData
     global  PromptDifficulty
     if PromptDifficulty != 3:
@@ -198,7 +189,11 @@ def CheckAnswers(q1,q2,q3,q4,q5):   #Will be used to check if the answers are co
         AnswerResponse = "Are these answers similar to the answers you gave: " + q1 + "AND " + storyData['questions'][0]['answer'] + ";" + q2 + "AND " + storyData['questions'][1]['answer'] + ";"  + q3 + "AND " + storyData['questions'][2]['answer'] + ";"  + q4 + "AND " + storyData['questions'][3]['answer'] + ";"  + q5 + "AND " + storyData['questions'][4]['answer'] + ". Just say correct or wrong for each question and nothing else then format it all in json and label each element as answer. if the comparisons are in different languages then mark it wrong"
 
     response = []
-    response = chat.send_message(AnswerResponse).text.splitlines()
+    try:
+        response = chat.send_message(AnswerResponse).text.splitlines()
+    except:
+        m.current = "ErrorScreen"
+        return
     answers = FormatGeminiJSON(response)
 
     with open('AnswerResponse.json', 'w', encoding='utf-8') as f:

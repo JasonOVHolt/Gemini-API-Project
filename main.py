@@ -35,7 +35,7 @@ class Manager(MDScreenManager):
         except:
             pass
         sm.transition.direction = "right"
-        answerData = CheckAnswers(args[0].ids.Q1A.text,args[0].ids.Q2A.text,args[0].ids.Q3A.text,args[0].ids.Q4A.text,args[0].ids.Q5A.text)
+        answerData = CheckAnswers(args[0].ids.Q1A.text,args[0].ids.Q2A.text,args[0].ids.Q3A.text,args[0].ids.Q4A.text,args[0].ids.Q5A.text,args[0])
 
         global storyData
         f = open('CurrentStory.json', encoding='utf-8')
@@ -111,12 +111,18 @@ class Manager(MDScreenManager):
         else:
             sm.current = 'SettingsScreen'
 
-    def CheckKey(*args):        #Checks to see if given key is valid and shows validity
+    def GoToSettings(*args):
+        args[0].current = "SettingsScreen"
+        pass
 
+
+    def CheckKey(*args):        #Checks to see if given key is valid and shows validity
+        global VerifiedKey
         setKey(args[0].ids.KeyText.text)
         valid = validKey()      #Sends a message to gemini to see if key is valid
 
         if valid:       #Shows whether key is valid or not
+            VerifiedKey = True
             args[0].ids.KeyValidity.text_color_normal = "green"
             args[0].ids.KeyValidity.text = "Valid"
             pass    
@@ -185,8 +191,6 @@ class Manager(MDScreenManager):
 
         #t1.join()
 
-
-
     def BackToStart(*args):     #Resets Text fields and unload old audio file
         global sm
         sm.transition.direction = "right"
@@ -196,10 +200,12 @@ class Manager(MDScreenManager):
         args[0].ids.Q4A.text = ""
         args[0].ids.Q5A.text = ""
         global audio
-        audio.unload()
+        try:
+            audio.unload()
+        except:
+            pass
 
         sm.current = "HomeScreen"
-
 
     def BackTo(*args):
         global sm
