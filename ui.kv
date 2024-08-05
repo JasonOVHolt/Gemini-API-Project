@@ -64,7 +64,7 @@ Manager:
 
             MDTextFieldHelperText:
                 id: KeyValidity
-                text: "N/A"
+                text: "Valid?"
                 mode: "persistent"
                 text_color_normal: "red"
 
@@ -819,15 +819,23 @@ Manager:
     MDScreen:   #PROMPT
         id:PromptScreen
         name:'PromptScreen'
+        
+        
 
-        MDLabel:
-            id: prompt_output
-            font_name: 'Code2000'
-            text: "L"
-            halign: 'center'
+
+        MDScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
             pos_hint: {'center_x': 0.5, 'center_y': 0.85}
-            text_color: '#6183e2'
-            size_hint_x: 0.95
+
+            MDLabel:
+                id: prompt_output
+                font_name: 'Code2000'
+                text: "L"
+                halign: 'center'
+                
+                text_color: '#6183e2'
+                size_hint_x: 0.95
 
         MDBoxLayout:
             id: main_scroll

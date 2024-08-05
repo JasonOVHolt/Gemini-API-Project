@@ -129,6 +129,7 @@ class Manager(MDScreenManager):
             VerifiedKey = True
             args[0].ids.KeyValidity.text_color_normal = "green"
             args[0].ids.KeyValidity.text = "Valid"
+            print(args[0].ids.KeyValidity.text)
             pass    
         else:
             args[0].ids.KeyValidity.text_color_normal = "red"
