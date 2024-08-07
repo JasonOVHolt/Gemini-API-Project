@@ -63,7 +63,7 @@ geminikey = data['GeminiKey']
 if VerifiedKey == True:     #Configures key for Gemini API if key was verified
     genai.configure(api_key=geminikey) #Configures Gemini API with API Key from environmnet variable
 
-model = genai.GenerativeModel('gemini-1.5-pro') #Selects Gemini Model
+model = genai.GenerativeModel('gemini-1.5-pro-latest') #Selects Gemini Model
 chat = model.start_chat(history=[]) #Begins conversation chat with gemini
 
 def setKey(key):        #Takes in a key and saves key to settings structure

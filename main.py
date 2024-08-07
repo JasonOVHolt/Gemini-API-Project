@@ -9,8 +9,8 @@ from kivy.core.text import LabelBase, DEFAULT_FONT
 from gemini import *
 
 #Horizontal and Vertical Aspect ratio default to 9:16
-h_ratio = 450
-v_ratio = 800
+h_ratio = 540
+v_ratio = 960
 Window.size = (h_ratio, v_ratio)
 
 sm = ObjectProperty()
