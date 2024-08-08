@@ -14,16 +14,18 @@ Manager:
             pos_hint: {'center_x': .5, 'center_y': .76}
             color: '#1b1b1b'
 
-        MDButton:
+        MDIconButton:
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}
             on_release: root.Next()
+            icon: 'play-circle'
+            theme_font_size: "Custom"
+            font_size: "200sp"
+            size: "200dp", "200dp"
+            style: "outlined"
+            radius: [self.height / 2, ]
+            size_hint: None, None
 
-            MDButtonIcon:
-                icon: 'plus'
-
-            MDButtonText:
-                text: 'Begin' 
-                font_name: 'Code2000'
+            
 
         MDFabButton:
             pos_hint: {'center_x': 0.08, 'center_y': 0.95}

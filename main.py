@@ -2,7 +2,7 @@ from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivymd.uix.screenmanager import MDScreenManager
 from kivy.core.window import Window
-from kivy.properties import ObjectProperty, BooleanProperty
+from kivy.properties import ObjectProperty
 from kivy.core.audio import SoundLoader
 from kivy.core.text import LabelBase, DEFAULT_FONT
 
