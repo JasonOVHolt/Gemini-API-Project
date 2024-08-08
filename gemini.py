@@ -18,7 +18,7 @@ storyData = ""
 currentAnswers = list()  
 
 
-class CustomThread(Thread):
+class CustomThread(Thread):     #Custom Thread class for later multi-threaded processes
     def __init__(self,group=None, target=None, name=None, args=(),kwargs={},Verbose=None):
         Thread.__init__(self,group,target,name,args,kwargs)
         self._return = None
@@ -124,13 +124,12 @@ def generateStory(g,l,d,m): #Generates the story given the corresponding topic, 
             f.write(f"{line}\n")
     f.close()
 
-    global storyData
+    global storyData    #Open story data in utf-8 and assigning it to the variable
     f = open('CurrentStory.json', encoding='utf-8')
     storyData = json.load(f)
 
     myobj = gTTS(text=storyData['story'], lang=language, slow=False, lang_check= False) #Creates text-to-speech with prompt and language code
     myobj.save("prompt.mp3") #Saves text-to-speech file
-
 
 
     m.ids.prompt_output.text = storyData['story']    #Outputs story to screen label
@@ -143,11 +142,11 @@ def generateStory(g,l,d,m): #Generates the story given the corresponding topic, 
     ChangeToPrompt(m)
 
 @mainthread
-def ChangeToPrompt(sm):
+def ChangeToPrompt(sm):     #Changes screen to the prompt screen in main thread
     sm.current = "PromptScreen"
 
 @mainthread
-def ChangeToError(sm):
+def ChangeToError(sm):      #Changes screen to the error screen in main thread
     sm.current = "ErrorScreen"
 
      

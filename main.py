@@ -13,14 +13,14 @@ h_ratio = 540
 v_ratio = 960
 Window.size = (h_ratio, v_ratio)
 
-sm = ObjectProperty()
+sm = ObjectProperty()       #Creates Object Properties for the screen manager and audio playback
 audio = ObjectProperty()
 
 isAudioPlaying = False
 
 selectedTopic = ""
 
-t1 = CustomThread()
+t1 = CustomThread()     #Assigns t1 to the custom thread calss
 
 
 
@@ -29,18 +29,21 @@ class Manager(MDScreenManager):
     
 
     def SubmitAnswers(*args):   #Checkanswers needs to return list of answers to define label text 
+
         global audio
-        try:
-            audio.stop()
+        try:    #Tries to stop audio if audio is currently playing
+            audio.stop()    
         except:
             pass
+
         sm.transition.direction = "right"
-        answerData = CheckAnswers(args[0].ids.Q1A.text,args[0].ids.Q2A.text,args[0].ids.Q3A.text,args[0].ids.Q4A.text,args[0].ids.Q5A.text,args[0])
+        answerData = CheckAnswers(args[0].ids.Q1A.text,args[0].ids.Q2A.text,args[0].ids.Q3A.text,args[0].ids.Q4A.text,args[0].ids.Q5A.text,args[0])     #Assigns the answer response to the variable for later use
 
         global storyData
-        f = open('CurrentStory.json', encoding='utf-8')
+        f = open('CurrentStory.json', encoding='utf-8')     #Opens the story data for displaying on results screen
         story = json.load(f)
-        args[0].ids.prompt_output2.text = args[0].ids.prompt_output.text
+
+        args[0].ids.prompt_output2.text = args[0].ids.prompt_output.text    #Shows story and question on the results screen
         args[0].ids.Q1OriginalQuestion.text = story['questions'][0]['question']
         args[0].ids.Q2OriginalQuestion.text = story['questions'][1]['question']
         args[0].ids.Q3OriginalQuestion.text = story['questions'][2]['question']
@@ -48,7 +51,7 @@ class Manager(MDScreenManager):
         args[0].ids.Q5OriginalQuestion.text = story['questions'][4]['question']
 
 
-        args[0].ids.Q1OriginalAnswer.text = args[0].ids.Q1A.text
+        args[0].ids.Q1OriginalAnswer.text = args[0].ids.Q1A.text    #Checks each question to see if the answers were similar and sets the text color
         if answerData['answer1'] == "correct":
             args[0].ids.Q1OriginalAnswer.text_color = "green"
         else:
@@ -115,7 +118,7 @@ class Manager(MDScreenManager):
         else:
             sm.current = 'SettingsScreen'
 
-    def GoToSettings(*args):
+    def GoToSettings(*args):    #Called when clicking settings icon
         args[0].current = "SettingsScreen"
         pass
 
@@ -129,7 +132,6 @@ class Manager(MDScreenManager):
             VerifiedKey = True
             args[0].ids.KeyValidity.text_color_normal = "green"
             args[0].ids.KeyValidity.text = "Valid"
-            print(args[0].ids.KeyValidity.text)
             pass    
         else:
             args[0].ids.KeyValidity.text_color_normal = "red"
@@ -139,8 +141,9 @@ class Manager(MDScreenManager):
 
     def ContinueSettings(*args):        #Checks if the key given in the settings screen is valid before letting them continue
         global VerifiedKey
+        
         if VerifiedKey:
-            sm.current = 'GenreScreen'
+            args[0].current = 'GenreScreen'
         else:
             pass
 
@@ -177,22 +180,23 @@ class Manager(MDScreenManager):
 
         print("Genre: " + PromptGenre + ", Language: " + PromptLanguage + ", Difficulty: " + str(PromptDifficulty))
 
+
         global response
-        sm.ids.loading_gif._coreimage.anim_reset(True)
+        sm.ids.loading_gif._coreimage.anim_reset(True) #Resets loading icon animation
         sm.current = 'LoadingScreen'
         global t1
-        TTSGenerated = BooleanProperty(defaultvalue=False)
-        t1 = CustomThread(target=generateStory,args=(PromptGenre,PromptLanguage,PromptDifficulty,sm))
+
+        t1 = CustomThread(target=generateStory,args=(PromptGenre,PromptLanguage,PromptDifficulty,sm))   #Assigns thread to function
         t1.start()
 
-        if PromptDifficulty == 1:
+        if PromptDifficulty == 1:   #Configures difficulty to text for loading display
             diff = "easy"
         if PromptDifficulty == 2:
             diff = "medium"
         if PromptDifficulty == 3:
             diff = "hard"
 
-        sm.ids.GenerationID.text = "Now generating a story about " + PromptGenre + " in the " + PromptLanguage + " language with a difficulty of " + diff + "..."
+        sm.ids.GenerationID.text = "Now generating a story about " + PromptGenre + " in the " + PromptLanguage + " language with a difficulty of " + diff + "..."   #Displays current
 
         #t1.join()
 
@@ -205,14 +209,15 @@ class Manager(MDScreenManager):
         args[0].ids.Q4A.text = ""
         args[0].ids.Q5A.text = ""
         global audio
-        try:
+
+        try:       #Unloads audio
             audio.unload()
         except:
             pass
 
         sm.current = "HomeScreen"
 
-    def BackTo(*args):
+    def BackTo(*args):      #Sends you screen depending on what augment is giving
         global sm
         global selectedTopic
         sm.transition.direction = "right"
@@ -229,14 +234,14 @@ class Manager(MDScreenManager):
 class PrototypeApp(MDApp):
     
 
-    def build(self):
+    def build(self):    #Builds app
         self.theme_cls.theme_style_switch_animation = True
         self.theme_cls.theme_style = "Dark"
 
-        with open("ui.kv", encoding='utf-8') as f:
+        with open("ui.kv", encoding='utf-8') as f:   #Loads Kivy file
             kv = Builder.load_string(f.read())
 
-        LabelBase.register(name='Code2000', fn_regular='Code2000.ttf')
+        LabelBase.register(name='Code2000', fn_regular='Code2000.ttf')  #Sets font
         LabelBase.register(DEFAULT_FONT, fn_regular='Code2000.ttf')
 
         return kv
