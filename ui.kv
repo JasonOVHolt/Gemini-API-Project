@@ -11,7 +11,7 @@ Manager:
         
         MDDivider: #Horizontal Divider
             size_hint_x: 1
-            pos_hint: {'center_x': .5, 'center_y': .76}
+            pos_hint: {'center_x': .5, 'center_y': .7}
             color: '#1b1b1b'
 
         MDIconButton:
@@ -52,7 +52,7 @@ Manager:
         
         MDDivider: #Horizontal Divider
             size_hint_x: 1
-            pos_hint: {'center_x': .5, 'center_y': .76}
+            pos_hint: {'center_x': .5, 'center_y': .7}
             color: '#1b1b1b'
 
         MDTextField:
@@ -74,6 +74,7 @@ Manager:
                 max_text_length: 40
 
         MDFabButton:
+            id: validButton
             pos_hint: {'center_x': 0.8, 'center_y': 0.65}
             icon: "check-bold"
             on_release: root.CheckKey()
@@ -83,7 +84,7 @@ Manager:
             text: 'To get your API Key, go to [ref=https://ai.google.dev/aistudio][color=0000EE][u]https://ai.google.dev/aistudio[/u][/color][/ref] and sign in to your google account. Then select "Get API Key". Once you create the API Key, copy your key and paste it into the text-field and select the checkmark to verify key.'
             markup: True
             halign: 'center'
-            text_color: 'grey'
+            text_color: 'white'
             on_ref_press:
                 import webbrowser
                 webbrowser.open(args[1])
@@ -114,7 +115,7 @@ Manager:
 
         MDDivider: #Horizontal Divider
             size_hint_x: 1
-            pos_hint: {'center_x': .5, 'center_y': .76}
+            pos_hint: {'center_x': .5, 'center_y': .74}
             color: '#1b1b1b'
 
         MDButton:
@@ -122,7 +123,7 @@ Manager:
             on_release: root.Genre("EL")
 
             MDButtonIcon:
-                icon: 'plus'
+                icon: 'account'
 
             MDButtonText:
                 text: 'Everyday Life'
@@ -132,7 +133,7 @@ Manager:
             on_release: root.Genre("SF")
 
             MDButtonIcon:
-                icon: 'plus'
+                icon: 'flask'
 
             MDButtonText:
                 text: 'Science Fiction'
@@ -142,7 +143,7 @@ Manager:
             on_release: root.Genre("HS")
 
             MDButtonIcon:
-                icon: 'plus'
+                icon: 'book'
 
             MDButtonText:
                 text: 'History'
@@ -152,7 +153,7 @@ Manager:
             on_release: root.Genre("FA")
 
             MDButtonIcon:
-                icon: 'plus'
+                icon: 'wizard-hat'
 
             MDButtonText:
                 text: 'Fantasy'
@@ -162,7 +163,7 @@ Manager:
             on_release: root.Genre("HO")
 
             MDButtonIcon:
-                icon: 'plus'
+                icon: 'ghost'
 
             MDButtonText:
                 text: 'Horror'
@@ -184,7 +185,7 @@ Manager:
 
         MDDivider: #Horizontal Divider
             size_hint_x: 1
-            pos_hint: {'center_x': .5, 'center_y': .76}
+            pos_hint: {'center_x': .5, 'center_y': .74}
             color: '#1b1b1b'
 
         MDButton:
@@ -264,7 +265,7 @@ Manager:
 
         MDDivider: #Horizontal Divider
             size_hint_x: 1
-            pos_hint: {'center_x': .5, 'center_y': .76}
+            pos_hint: {'center_x': .5, 'center_y': .74}
             color: '#1b1b1b'
 
         MDButton:
@@ -302,7 +303,7 @@ Manager:
             on_release: root.Topic("a vampire and a werewolf")
 
             MDButtonIcon:
-                icon: 'plus'
+                icon: 'bat'
 
             MDButtonText:
                 text: 'Vampires & Werewolves'
@@ -344,7 +345,7 @@ Manager:
 
         MDDivider: #Horizontal Divider
             size_hint_x: 1
-            pos_hint: {'center_x': .5, 'center_y': .76}
+            pos_hint: {'center_x': .5, 'center_y': .74}
             color: '#1b1b1b'
 
         MDButton:
@@ -426,7 +427,7 @@ Manager:
 
         MDDivider: #Horizontal Divider
             size_hint_x: 1
-            pos_hint: {'center_x': .5, 'center_y': .76}
+            pos_hint: {'center_x': .5, 'center_y': .74}
             color: '#1b1b1b'
 
         MDButton:
@@ -507,7 +508,7 @@ Manager:
 
         MDDivider: #Horizontal Divider
             size_hint_x: 1
-            pos_hint: {'center_x': .5, 'center_y': .76}
+            pos_hint: {'center_x': .5, 'center_y': .74}
             color: '#1b1b1b'
 
         MDButton:
@@ -525,7 +526,7 @@ Manager:
             on_release: root.Topic("a monster who hunts people down")
 
             MDButtonIcon:
-                icon: 'plus'
+                icon: 'spider'
 
             MDButtonText:
                 text: 'Monster'
@@ -589,7 +590,7 @@ Manager:
 
         MDDivider: #Horizontal Divider
             size_hint_x: 1
-            pos_hint: {'center_x': .5, 'center_y': .76}
+            pos_hint: {'center_x': .5, 'center_y': .74}
             color: '#1b1b1b'
 
 
@@ -605,8 +606,6 @@ Manager:
                 pos_hint: {'center_x': 0.5, 'center_y': 0.8}
                 on_release: root.Language("English")
 
-                MDButtonIcon:
-                    icon: 'plus'
 
                 MDButtonText:
                     text: 'English'
@@ -616,8 +615,6 @@ Manager:
                 pos_hint: {'center_x': 0.5, 'center_y': 0.7}
                 on_release: root.Language("French")
 
-                MDButtonIcon:
-                    icon: 'plus'
 
                 MDButtonText:
                     text: 'French'
@@ -626,8 +623,6 @@ Manager:
                 pos_hint: {'center_x': 0.5, 'center_y': 0.6}
                 on_release: root.Language("Spanish")
 
-                MDButtonIcon:
-                    icon: 'plus'
 
                 MDButtonText:
                     text: 'Spanish'
@@ -636,8 +631,6 @@ Manager:
                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                 on_release: root.Language("German")
 
-                MDButtonIcon:
-                    icon: 'plus'
 
                 MDButtonText:
                     text: 'German'
@@ -646,8 +639,6 @@ Manager:
                 pos_hint: {'center_x': 0.5, 'center_y': 0.4}
                 on_release: root.Language("Portuguese")
 
-                MDButtonIcon:
-                    icon: 'plus'
 
                 MDButtonText:
                     text: 'Portuguese'
@@ -656,8 +647,6 @@ Manager:
                 pos_hint: {'center_x': 0.5, 'center_y': 0.3}
                 on_release: root.Language("Japanese")
 
-                MDButtonIcon:
-                    icon: 'plus'
 
                 MDButtonText:
                     text: 'Japanese'
@@ -666,8 +655,6 @@ Manager:
                 pos_hint: {'center_x': 0.5, 'center_y': 0.3}
                 on_release: root.Language("Chinese")
 
-                MDButtonIcon:
-                    icon: 'plus'
 
                 MDButtonText:
                     text: 'Chinese (Mandarin)'
@@ -676,8 +663,6 @@ Manager:
                 pos_hint: {'center_x': 0.5, 'center_y': 0.3}
                 on_release: root.Language("Italian")
 
-                MDButtonIcon:
-                    icon: 'plus'
 
                 MDButtonText:
                     text: 'Italian'
@@ -709,7 +694,7 @@ Manager:
 
         MDDivider: #Horizontal Divider
             size_hint_x: 1
-            pos_hint: {'center_x': .5, 'center_y': .76}
+            pos_hint: {'center_x': .5, 'center_y': .7}
             color: '#1b1b1b'
 
         MDCard:
@@ -836,7 +821,7 @@ Manager:
                 text: "L"
                 halign: 'center'
                 
-                text_color: '#6183e2'
+                text_color: 'white'
                 size_hint_x: 0.95
 
         MDBoxLayout:

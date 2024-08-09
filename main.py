@@ -132,10 +132,14 @@ class Manager(MDScreenManager):
             VerifiedKey = True
             args[0].ids.KeyValidity.text_color_normal = "green"
             args[0].ids.KeyValidity.text = "Valid"
+            args[0].ids.validButton.icon = "check-bold"
+            args[0].ids.validButton.text_color = "green"
             pass    
         else:
             args[0].ids.KeyValidity.text_color_normal = "red"
             args[0].ids.KeyValidity.text = "NOT Valid"
+            args[0].ids.validButton.icon = "close-bold"
+            args[0].ids.validButton.text_color = "red"
             pass    
         pass
 
