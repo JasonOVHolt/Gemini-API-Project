@@ -138,7 +138,7 @@ class Manager(MDScreenManager):
         else:
             args[0].ids.KeyValidity.text_color_normal = "red"
             args[0].ids.KeyValidity.text = "NOT Valid"
-            args[0].ids.validButton.icon = "close-bold"
+            args[0].ids.validButton.icon = "close-thick"
             args[0].ids.validButton.text_color = "red"
             pass    
         pass
